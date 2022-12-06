@@ -27,7 +27,6 @@ class UserRepository @Inject constructor(var apiService: APIService) {
                 if (response.isSuccessful){
                     val dataResponse = response.body()
                     _registerUser.postValue(dataResponse)
-//                    Log.d("LogRegister", dataResponse.toString())
                 }else{
                     _registerUser.postValue(null)
                     Log.e("Error not successful : ", response.message())

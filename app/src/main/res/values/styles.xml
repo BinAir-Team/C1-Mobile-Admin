@@ -3,7 +3,7 @@
     <style name="button">
         <item name="backgroundTint">@color/main_blue</item>
         <item name="android:textColor">@color/white</item>
-        <item name="cornerRadius">4dp</item>
+        <item name="cornerRadius">5dp</item>
     </style>
     <style name="button_circle">
         <item name="backgroundTint">@color/main_blue</item>

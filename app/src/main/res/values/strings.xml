@@ -55,4 +55,23 @@
     <string name="jenis_kelamin">Jenis Kelamin</string>
     <string name="laki_laki">Laki-laki</string>
     <string name="perempuan">Perempuan</string>
+    <string name="btn_tambah_penerbangan">Tambah Penerbangan</string>
+    <string name="label_jam_berangkat">Jam Berangkat</string>
+    <string name="label_tambah_penerbangan">Tambah Penerbangan</string>
+    <string name="from_airport">Soekarno Hatta International Airport</string>
+    <string name="destinatiom_airport">Juanda International Airport</string>
+    <string name="label_bandara_asal">Bandara Asal</string>
+    <string name="label_bandara_tujuan">Bandara Destinasi</string>
+    <string name="label_jam_datang">Jam Kedatangan</string>
+    <string name="belum_dipilih">-</string>
+    <string name="label_Kapasitas">Kapasitas Pesawat</string>
+    <string name="ex_kapasitasPenumpang">200</string>
+    <string name="broadcast_notifikasi">Broadcast Notifikasi</string>
+    <string name="pesan_broadcast">Pesan Broadcast</string>
+    <string name="boradcastnote">Pesan ini akan di tampilkan di laman user</string>
+    <string name="log_out">Keluar</string>
+    <string name="label_hargaDewasa">Harga Dewasa</string>
+    <string name="ex_hargadewasa">200000</string>
+    <string name="label_hargaAnakAnak">Harga Anak Anak</string>
+    <string name="ex_hargaanakanak">150000</string>
 </resources>
