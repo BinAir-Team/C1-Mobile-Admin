@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.admin.data.model.DataRegister
 import binar.finalproject.binair.admin.data.remote.APIService
+import binar.finalproject.binair.admin.data.response.LogOutResponse
 import binar.finalproject.binair.admin.data.response.LoginResponse
 import binar.finalproject.binair.admin.data.response.RegisterUserResponse
 import retrofit2.Call
@@ -17,6 +18,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
     val registerUser : LiveData<RegisterUserResponse?> = _registerUser
     private val _loginUser = MutableLiveData<LoginResponse?>()
     val loginUser : LiveData<LoginResponse?> = _loginUser
+    private val _logout = MutableLiveData<LogOutResponse?>()
+    val logout : LiveData<LogOutResponse?> = _logout
 
     fun registerUser(dataUser : DataRegister) : LiveData<RegisterUserResponse?> {
         apiService.registerUser(dataUser).enqueue(object : Callback<RegisterUserResponse> {
@@ -63,5 +66,29 @@ class UserRepository @Inject constructor(var apiService: APIService) {
             }
         })
         return loginUser
+    }
+
+    fun logoutProfile(token : String) : LiveData<LogOutResponse?>{
+        apiService.logout(token).enqueue(object :Callback<LogOutResponse>{
+            override fun onResponse(
+                call: Call<LogOutResponse>,
+                response: Response<LogOutResponse>
+            ) {
+                if (response.isSuccessful){
+                    val dataResponse = response.body()
+                    _logout.postValue(dataResponse)
+                    Log.d("LogRegister", dataResponse.toString())
+                }else{
+                    _logout.postValue(null)
+                    Log.e("Error not successful : ", response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<LogOutResponse>, t: Throwable) {
+                _logout.postValue(null)
+                Log.d("Error onFailure : ", t.message!!)
+            }
+        })
+        return logout
     }
 }

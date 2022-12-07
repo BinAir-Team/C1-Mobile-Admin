@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant.dataPassenger
+import binar.finalproject.binair.admin.data.Constant.dataUser
 import binar.finalproject.binair.admin.data.model.TicketData
 import binar.finalproject.binair.admin.databinding.FragmentHomeBinding
+import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -27,6 +29,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private val calendar = Calendar.getInstance()
     lateinit var ticketVM : TicketViewModel
+    private lateinit var sharedPrefs : SharedPreferences
 
 
     override fun onCreateView(
@@ -35,13 +38,14 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         ticketVM = ViewModelProvider(this).get(TicketViewModel::class.java)
+        sharedPrefs = requireActivity().getSharedPreferences(dataUser, 0)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        showBottomNavigation()
         setListener()
     }
 
@@ -138,8 +142,7 @@ class HomeFragment : Fragment() {
         val childPrice = binding.etChildPrice.text.toString().toInt()
         val initialStock = binding.etJmlPenumpangInput.text.toString().toInt()
 
-        val token ="Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxZDM3MGVlLTBkNDItNDY2Yy04OGEyLTg5MmFkYmQ1ODRkYyIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJwaG9uZSI6bnVsbCwicm9sZSI6ImFkbWluIiwicHJvZmlsZV9pbWFnZSI6bnVsbCwiaWF0IjoxNjcwMjk2ODYwLCJleHAiOjE2NzAzMDA0NjB9.xt-Pz48-R8OwmsJrdrMQAe7IFSNGzaykuhTwThY6NpM"
-
+        val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
         val ticketdata = TicketData(asalKota,asalBandara,destinasi,destinasiBandara,
             "2022-11-25 13:39:42.408 +00:00",jamBerangkat,jamKedatangan, "sekali jalan",
             adultPrice,childPrice, TRUE, initialStock, initialStock )
@@ -151,5 +154,8 @@ class HomeFragment : Fragment() {
                 Toast.makeText(context, "Data Gagal disimpan", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun showBottomNavigation() {
+        (activity as MainActivity).binding.bottomNavContainer.visibility = View.VISIBLE
     }
 }

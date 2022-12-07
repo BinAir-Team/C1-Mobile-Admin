@@ -1,60 +1,84 @@
 package binar.finalproject.binair.admin.ui.fragment
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.annotation.IdRes
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
+import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.admin.R
+import binar.finalproject.binair.admin.data.Constant
+import binar.finalproject.binair.admin.databinding.FragmentProfileBinding
+import binar.finalproject.binair.admin.viewmodel.UserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding : FragmentProfileBinding
+    private lateinit var sharedPrefs : SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
+    lateinit var userVM : UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater)
+        userVM = ViewModelProvider(this).get(UserViewModel::class.java)
+        sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
+        editor = sharedPrefs.edit()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ProfileFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ProfileFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setListener()
+    }
+    val token : String = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxZDM3MGVlLTBkNDItNDY2Yy04OGEyLTg5MmFkYmQ1ODRkYyIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJwaG9uZSI6bnVsbCwicm9sZSI6ImFkbWluIiwicHJvZmlsZV9pbWFnZSI6bnVsbCwiaWF0IjoxNjcwMzI5Mzg5LCJleHAiOjE2NzAzMzI5ODl9.-IkpQc9J8B9q8uiJwmiOIGYdYPzMvPyTnXuNQCockt8"
+    private fun setListener() {
+        binding.apply {
+            logoutbutton.setOnClickListener{
+                sharedPrefs.getString("token","tokenisnull")?.let { it1 ->
+                    userVM.logoutUser(token).observe(viewLifecycleOwner) {
+                        if (it != null && it.message != "Success") {
+                            editor.putString("token", null)
+                            editor.putString("namaLengkap", null)
+                            editor.putBoolean("isLogin", false)
+                            editor.apply()
+                            gotologin()
+                            Toast.makeText(context, "Logout Berhasil", Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(context, "Logout Gagal", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
             }
+        }
+    }
+
+    private fun gotologin(){
+        findNavController().navigateSafe(R.id.action_profileFragment_to_loginFragment)
+    }
+
+    fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {
+        val destinationId = currentDestination?.getAction(resId)?.destinationId.orEmpty()
+        currentDestination?.let { node ->
+            val currentNode = when (node) {
+                is NavGraph -> node
+                else -> node.parent
+            }
+            if (destinationId != 0) {
+                currentNode?.findNode(destinationId)?.let { navigate(resId, args) }
+            }
+        }}
+
+    fun Int?.orEmpty(default: Int = 0): Int {
+        return this ?: default
     }
 }
