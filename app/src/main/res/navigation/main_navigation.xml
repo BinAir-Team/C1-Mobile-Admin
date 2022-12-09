@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/ticketListFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -61,7 +61,11 @@
         android:id="@+id/ticketListFragment"
         android:name="binar.finalproject.binair.admin.ui.fragment.TicketListFragment"
         android:label="fragment_ticket_list"
-        tools:layout="@layout/fragment_ticket_list" /><action android:id="@+id/action_global_homeFragment2" app:destination="@id/homeFragment2"/><action android:id="@+id/action_global_ticketListFragment" app:destination="@id/ticketListFragment"/><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/><action android:id="@+id/action_global_addNotificationFragment" app:destination="@id/addNotificationFragment"/>
+        tools:layout="@layout/fragment_ticket_list" >
+        <action
+            android:id="@+id/action_ticketListFragment_to_ticketDetailsFragment2"
+            app:destination="@id/ticketDetailsFragment" />
+    </fragment><action android:id="@+id/action_global_homeFragment2" app:destination="@id/homeFragment2"/><action android:id="@+id/action_global_ticketListFragment" app:destination="@id/ticketListFragment"/><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/><action android:id="@+id/action_global_addNotificationFragment" app:destination="@id/addNotificationFragment"/>
     <fragment
         android:id="@+id/registerFragment"
         android:name="binar.finalproject.binair.admin.ui.fragment.RegisterFragment"
@@ -70,5 +74,17 @@
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketDetailsFragment"
+        android:name="binar.finalproject.binair.admin.ui.fragment.TicketDetailsFragment"
+        android:label="fragment_ticket_details"
+        tools:layout="@layout/fragment_ticket_details">
+        <argument
+            android:name="clickedTicket"
+            app:argType="binar.finalproject.binair.admin.data.response.DataTicket" />
+        <action
+            android:id="@+id/action_ticketDetailsFragment_to_ticketListFragment"
+            app:destination="@id/ticketListFragment" />
     </fragment>
 </navigation>
