@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.admin.data.TicketRepository
 import binar.finalproject.binair.admin.data.model.TicketData
 import binar.finalproject.binair.admin.data.response.AddTicketResponse
+import binar.finalproject.binair.admin.data.response.DeleteTicketResponse
 import binar.finalproject.binair.admin.data.response.LogOutResponse
 import binar.finalproject.binair.admin.data.response.UpdateTicketResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,4 +17,5 @@ class TicketViewModel @Inject constructor(private var ticketRepo : TicketReposit
 
     fun updateticket(id :String, dataticket : TicketData , Auth :  String): LiveData<UpdateTicketResponse?> = ticketRepo.updateticket(id, dataticket,Auth)
 
+    fun deleteticket(id :String, Auth :  String): LiveData<DeleteTicketResponse?> = ticketRepo.deleteticket(id,Auth)
 }

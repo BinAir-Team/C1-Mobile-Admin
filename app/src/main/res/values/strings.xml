@@ -90,4 +90,5 @@
     <string name="list_detailTicket">Detail Ticket</string>
     <string name="list_EditTicket">Edit Ticket</string>
     <string name="btn_saveEdit">Simpan Tiket</string>
+    <string name="review_delete">Masukkan Password untuk Verifikasi</string>
 </resources>

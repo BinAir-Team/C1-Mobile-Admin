@@ -21,10 +21,12 @@ interface APIService {
     @DELETE("logout")
     fun logout(@Header("Authorization") Auth :  String) : Call<LogOutResponse>
 
-    @GET("tickets?willFly=true")
-    fun getAllTicket() : Call<GetTiketResponse>
+    @GET("tickets")
+    fun getAllTicket(@Query("willFly") willFly : String) : Call<GetTiketResponse>
 
     @PUT("tickets/{id}")
-    fun updateTicket(@Path("id") id :String,@Body data : TicketData, @Header("Authorization") Auth :  String) : Call<UpdateTicketResponse>
+    fun updateTicket(@Path("id") id : String ,@Body data : TicketData, @Header("Authorization") Auth :  String) : Call<UpdateTicketResponse>
 
+    @DELETE("tickets/{id}")
+    fun deleteTicket(@Path("id") id : String, @Header("Authorization") Auth: String) : Call<DeleteTicketResponse>
 }

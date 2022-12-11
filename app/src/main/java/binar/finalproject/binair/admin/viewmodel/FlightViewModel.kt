@@ -9,5 +9,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FlightViewModel @Inject constructor(private val flightRepo : FlightRepository) : ViewModel() {
-    fun callGetAllTicket(willFly : String) : LiveData<List<DataTicket>?> = flightRepo.callGetAllTicket()
+    fun callGetAllTicket(willFly : String) : LiveData<List<DataTicket>?> = flightRepo.callGetAllTicket(willFly)
 }

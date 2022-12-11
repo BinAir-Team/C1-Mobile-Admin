@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/ticketListFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/splashScreenFragment"
@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_ticketListFragment_to_editTicketFragment"
             app:destination="@id/editTicketFragment" />
+        <action
+            android:id="@+id/action_ticketListFragment_to_pastTicketListFragment"
+            app:destination="@id/pastTicketListFragment" />
     </fragment><action android:id="@+id/action_global_homeFragment2" app:destination="@id/homeFragment2"/><action android:id="@+id/action_global_ticketListFragment" app:destination="@id/ticketListFragment"/><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/><action android:id="@+id/action_global_addNotificationFragment" app:destination="@id/addNotificationFragment"/>
     <fragment
         android:id="@+id/registerFragment"
@@ -96,5 +99,20 @@
         android:label="EditTicketFragment" >
         <argument android:name="clickedTicket"
             app:argType="binar.finalproject.binair.admin.data.response.DataTicket" />
+    </fragment>
+    <fragment
+        android:id="@+id/pastTicketListFragment"
+        android:name="binar.finalproject.binair.admin.ui.fragment.PastTicketListFragment"
+        android:label="fragment_past_ticket_list"
+        tools:layout="@layout/fragment_past_ticket_list" >
+        <action
+            android:id="@+id/action_pastTicketListFragment_to_ticketDetailsFragment"
+            app:destination="@id/ticketDetailsFragment" />
+        <action
+            android:id="@+id/action_pastTicketListFragment_to_editTicketFragment"
+            app:destination="@id/editTicketFragment" />
+        <action
+            android:id="@+id/action_pastTicketListFragment_to_ticketListFragment"
+            app:destination="@id/ticketListFragment" />
     </fragment>
 </navigation>

@@ -15,8 +15,8 @@ class FlightRepository @Inject constructor (var client : APIService){
     private val _allTicket = MutableLiveData<List<DataTicket>?>()
     val allTicket : LiveData<List<DataTicket>?> = _allTicket
 
-    fun callGetAllTicket() : LiveData<List<DataTicket>?>{
-        client.getAllTicket().enqueue(object : Callback<GetTiketResponse>{
+    fun callGetAllTicket(willFly : String) : LiveData<List<DataTicket>?>{
+        client.getAllTicket(willFly).enqueue(object : Callback<GetTiketResponse>{
             override fun onResponse(
                 call: Call<GetTiketResponse>,
                 response: Response<GetTiketResponse>

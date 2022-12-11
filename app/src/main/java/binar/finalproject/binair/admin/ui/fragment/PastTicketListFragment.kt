@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant
 import binar.finalproject.binair.admin.data.response.DataTicket
-import binar.finalproject.binair.admin.databinding.FragmentHomeBinding
+import binar.finalproject.binair.admin.databinding.FragmentPastTicketListBinding
 import binar.finalproject.binair.admin.databinding.FragmentTicketListBinding
 import binar.finalproject.binair.admin.databinding.ReviewDeleteTicketBinding
 import binar.finalproject.binair.admin.ui.activity.MainActivity
@@ -24,8 +24,8 @@ import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TicketListFragment : Fragment() {
-    private lateinit var binding : FragmentTicketListBinding
+class PastTicketListFragment : Fragment() {
+    private lateinit var binding : FragmentPastTicketListBinding
     private lateinit var flightVM : FlightViewModel
     private lateinit var sharedPrefs : SharedPreferences
     lateinit var ticketVM : TicketViewModel
@@ -35,7 +35,7 @@ class TicketListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
-        binding = FragmentTicketListBinding.inflate(inflater, container, false)
+        binding = FragmentPastTicketListBinding.inflate(inflater, container, false)
         ticketVM = ViewModelProvider(this).get(TicketViewModel::class.java)
         flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         return binding.root
@@ -49,15 +49,14 @@ class TicketListFragment : Fragment() {
     }
     private fun setListener(){
         binding.apply {
-            cvOngoing.setOnClickListener(){
-                findNavController().navigate(R.id.action_ticketListFragment_to_pastTicketListFragment)
+            cvPast.setOnClickListener(){
+                findNavController().navigate(R.id.action_pastTicketListFragment_to_ticketListFragment)
             }
         }
     }
-
     private fun getListTicket() {
         showLoading(true)
-        flightVM.callGetAllTicket("true").observe(viewLifecycleOwner) {
+        flightVM.callGetAllTicket("false").observe(viewLifecycleOwner) {
             if (it != null) {
                 setDataToRecView(it)
                 showLoading(false)
@@ -125,7 +124,6 @@ class TicketListFragment : Fragment() {
             binding.progressBar.visibility = View.GONE
         }
     }
-
 
     private fun showBottomNavigation() {
         (activity as MainActivity).binding.bottomNavContainer.visibility = View.VISIBLE
