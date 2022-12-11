@@ -8,18 +8,25 @@ import binar.finalproject.binair.admin.databinding.ItemTicketBinding
 
 class ListTicketAdapter(private val listTicket : List<DataTicket>) : RecyclerView.Adapter<ListTicketAdapter.ViewHolder>() {
     var onClick: ((DataTicket) -> Unit)? = null
-    class ViewHolder(private val binding : ItemTicketBinding, private var onClick : (((DataTicket) -> Unit)?) ): RecyclerView.ViewHolder(binding.root) {
+    var editClick: ((DataTicket) -> Unit)? = null
+    class ViewHolder(private val binding : ItemTicketBinding,
+                     private var onClick : (((DataTicket) -> Unit)?),
+                     private var editClick : (((DataTicket) -> Unit)?)
+    ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DataTicket) {
             binding.ticket = item
             binding.cvTicket.setOnClickListener {
                 onClick?.invoke(item)
+            }
+            binding.btnEdit.setOnClickListener{
+                editClick?.invoke(item)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = ItemTicketBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(v,onClick)
+        return ViewHolder(v,onClick, editClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

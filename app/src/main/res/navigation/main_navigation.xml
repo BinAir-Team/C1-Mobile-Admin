@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_ticketListFragment_to_ticketDetailsFragment2"
             app:destination="@id/ticketDetailsFragment" />
+        <action
+            android:id="@+id/action_ticketListFragment_to_editTicketFragment"
+            app:destination="@id/editTicketFragment" />
     </fragment><action android:id="@+id/action_global_homeFragment2" app:destination="@id/homeFragment2"/><action android:id="@+id/action_global_ticketListFragment" app:destination="@id/ticketListFragment"/><action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment"/><action android:id="@+id/action_global_addNotificationFragment" app:destination="@id/addNotificationFragment"/>
     <fragment
         android:id="@+id/registerFragment"
@@ -86,5 +89,12 @@
         <action
             android:id="@+id/action_ticketDetailsFragment_to_ticketListFragment"
             app:destination="@id/ticketListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTicketFragment"
+        android:name="binar.finalproject.binair.admin.ui.fragment.EditTicketFragment"
+        android:label="EditTicketFragment" >
+        <argument android:name="clickedTicket"
+            app:argType="binar.finalproject.binair.admin.data.response.DataTicket" />
     </fragment>
 </navigation>

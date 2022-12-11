@@ -87,4 +87,7 @@
     <string name="total_passenger">Jumlah Penumpang</string>
     <string name="label_terisi">Kursi Teisi</string>
     <string name="label_tersedia">Kursi Tersedia</string>
+    <string name="list_detailTicket">Detail Ticket</string>
+    <string name="list_EditTicket">Edit Ticket</string>
+    <string name="btn_saveEdit">Simpan Tiket</string>
 </resources>

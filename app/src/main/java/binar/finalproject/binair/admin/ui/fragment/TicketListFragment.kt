@@ -63,6 +63,11 @@ class TicketListFragment : Fragment() {
             val action = TicketListFragmentDirections.actionTicketListFragmentToTicketDetailsFragment2(it)
             findNavController().navigate(action)
         }
+
+        adapter.editClick = {
+            val action = TicketListFragmentDirections.actionTicketListFragmentToEditTicketFragment(it)
+            findNavController().navigate(action)
+        }
     }
     private fun showLoading(condition : Boolean) {
         if (condition) {

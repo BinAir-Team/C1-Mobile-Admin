@@ -38,7 +38,7 @@ data class DataTicket(
     @SerializedName("from")
     val from: String?,
     @SerializedName("id")
-    val id: String?,
+    val id: String,
     @SerializedName("init_stock")
     val initStock: Int?,
     @SerializedName("to")

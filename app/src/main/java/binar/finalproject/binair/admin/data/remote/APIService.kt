@@ -23,4 +23,8 @@ interface APIService {
 
     @GET("tickets?willFly=true")
     fun getAllTicket() : Call<GetTiketResponse>
+
+    @PUT("tickets/{id}")
+    fun updateTicket(@Path("id") id :String,@Body data : TicketData, @Header("Authorization") Auth :  String) : Call<UpdateTicketResponse>
+
 }
