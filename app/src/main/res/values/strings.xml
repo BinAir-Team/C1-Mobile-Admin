@@ -74,4 +74,21 @@
     <string name="ex_hargadewasa">200000</string>
     <string name="label_hargaAnakAnak">Harga Anak Anak</string>
     <string name="ex_hargaanakanak">150000</string>
+    <string name="label_sudahjalan">Sudah Jalan</string>
+    <string name="label_akan_datang">Akan Datang</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_delete">Delete</string>
+    <string name="list_ticket">List Tiket</string>
+    <string name="label_date">Tanggal</string>
+    <string name="Label_Jam">Jam</string>
+    <string name="label_duration">Durasi</string>
+    <string name="label_bagasi">Gratis Hingga 20 Kg</string>
+    <string name="label_economy_class">Kelas Ekonomi</string>
+    <string name="total_passenger">Jumlah Penumpang</string>
+    <string name="label_terisi">Kursi Teisi</string>
+    <string name="label_tersedia">Kursi Tersedia</string>
+    <string name="list_detailTicket">Detail Ticket</string>
+    <string name="list_EditTicket">Edit Ticket</string>
+    <string name="btn_saveEdit">Simpan Tiket</string>
+    <string name="review_delete">Masukkan Password untuk Verifikasi</string>
 </resources>

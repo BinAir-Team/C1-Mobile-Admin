@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="ticket"
+            type="binar.finalproject.binair.admin.data.response.DataTicket" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="10dp"
+        app:cardElevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/labelMaskapai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/logo_pesawat" />
+
+            <TextView
+                android:id="@+id/tvKodeMaskapai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="25dp"
+                android:layout_toEndOf="@+id/labelMaskapai"
+                android:text="PK 625" />
+
+            <TextView
+                android:id="@+id/tvTanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="16dp"
+                android:text='@{ticket.date, default="2022-12-10"}' />
+
+            <TextView
+                android:id="@+id/tvJamBerangkat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelMaskapai"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:text='@{ticket.departureTime, default = "20:00"}'
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvKotaBerangkat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvJamBerangkat"
+                android:layout_marginStart="30dp"
+                android:text="@{ticket.from, default = Jakarta}"
+                android:textSize="8sp"
+                tools:ignore="SmallSp" />
+
+            <ImageView
+                android:id="@+id/containerLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelMaskapai"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/tiketitem_garisestimasi" />
+
+            <ImageView
+                android:id="@+id/iconLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/labelMaskapai"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="18dp"
+                android:src="@drawable/tiketitem_logoestimasi" />
+
+            <TextView
+                android:id="@+id/tvJamDatang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_above="@id/tvKotaTujuan"
+                android:layout_alignParentEnd="true"
+                android:text='@{ticket.arrivalTime, default = "21.00"}'
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tvKotaTujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@+id/tvJamBerangkat"
+                android:layout_alignParentEnd="true"
+                android:text="@{ticket.to,default = Makassar }"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+
+            <LinearLayout
+                android:layout_centerHorizontal="true"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/tvKotaTujuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="14dp"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="@color/orange"
+                    android:id="@+id/btnEdit"
+                    style="@style/button"
+                    android:layout_width="126dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/btn_edit" />
+                <Button
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:textSize="14dp"
+                    android:backgroundTint="@color/MC_SoftRed"
+                    android:id="@+id/btnDelete"
+                    style="@style/button"
+                    android:layout_width="126dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/btn_delete" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

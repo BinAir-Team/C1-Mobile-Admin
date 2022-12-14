@@ -54,9 +54,6 @@ class LoginFragment : Fragment() {
 
     private fun setListener() {
         binding.apply {
-            tvRegister.setOnClickListener{
-                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-            }
             btnSignin.setOnClickListener {
                 signInUser()
             }
@@ -129,7 +126,7 @@ class LoginFragment : Fragment() {
 
     private fun observeLoginResult(email: String, pass: String) {
         userVM.loginUser(email,pass).observe(viewLifecycleOwner) {
-            if (it != null && it.message != "Email does not exist") {
+            if (it != null && it.status == "Email does not exist") {
                 val namaLengkap = it.data.firstname + " " + it.data.lastname
                 editor.putString("token", it.data.accessToken)
                 editor.putString("namaLengkap", namaLengkap)

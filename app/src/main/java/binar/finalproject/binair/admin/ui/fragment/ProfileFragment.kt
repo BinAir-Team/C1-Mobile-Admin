@@ -42,22 +42,15 @@ class ProfileFragment : Fragment() {
     }
     val token : String = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxZDM3MGVlLTBkNDItNDY2Yy04OGEyLTg5MmFkYmQ1ODRkYyIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJwaG9uZSI6bnVsbCwicm9sZSI6ImFkbWluIiwicHJvZmlsZV9pbWFnZSI6bnVsbCwiaWF0IjoxNjcwMzI5Mzg5LCJleHAiOjE2NzAzMzI5ODl9.-IkpQc9J8B9q8uiJwmiOIGYdYPzMvPyTnXuNQCockt8"
     private fun setListener() {
+
         binding.apply {
             logoutbutton.setOnClickListener{
-                sharedPrefs.getString("token","tokenisnull")?.let { it1 ->
-                    userVM.logoutUser(token).observe(viewLifecycleOwner) {
-                        if (it != null && it.message != "Success") {
-                            editor.putString("token", null)
-                            editor.putString("namaLengkap", null)
-                            editor.putBoolean("isLogin", false)
-                            editor.apply()
-                            gotologin()
-                            Toast.makeText(context, "Logout Berhasil", Toast.LENGTH_SHORT).show()
-                        }else{
-                            Toast.makeText(context, "Logout Gagal", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
+
+                editor.putString("token", null)
+                editor.putString("namaLengkap", null)
+                editor.putBoolean("isLogin", false)
+                editor.apply()
+                gotologin()
             }
         }
     }
