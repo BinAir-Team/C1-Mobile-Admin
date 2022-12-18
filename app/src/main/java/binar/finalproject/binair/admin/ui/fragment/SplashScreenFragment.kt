@@ -39,7 +39,12 @@ class SplashScreenFragment : Fragment() {
                 editor.putBoolean("firstRun", false)
                 editor.apply()
                 findNavController().navigate(R.id.action_splashScreenFragment_to_carouselFragment)
-            }else{
+            }
+            else if (sharedPref.getString("token",null) != null){
+                findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment2)
+
+            }
+            else{
                 findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
             }
         },500)

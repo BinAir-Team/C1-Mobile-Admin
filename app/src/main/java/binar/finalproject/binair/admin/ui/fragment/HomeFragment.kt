@@ -63,6 +63,14 @@ class HomeFragment : Fragment() {
                     showDatePickerDialog("berangkat")
                 }
             }
+            etTglSelesaiInput.setOnClickListener {
+                showDatePickerDialog("selesai")
+            }
+            etTglSelesaiInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    showDatePickerDialog("selesai")
+                }
+            }
             etJamBerangkatInput.setOnClickListener{
                 showTimePickerDialog("keberangkatan")
             }
@@ -128,6 +136,9 @@ class HomeFragment : Fragment() {
         if(kategori == "berangkat") {
             binding.etTglBerangkatInput.setText(formatedDate)
         }
+        if(kategori == "selesai") {
+            binding.etTglSelesaiInput.setText(formatedDate)
+        }
     }
 
     private fun addTicket(){
@@ -135,20 +146,24 @@ class HomeFragment : Fragment() {
         val asalBandara = binding.etAirportFrom.text.toString()
         val destinasi = binding.etDestination.text.toString()
         val destinasiBandara = binding.etAirportDestination.text.toString()
-        val tanggal = binding.etTglBerangkatInput.text.toString()
+        val tanggalBerangkat = binding.etTglBerangkatInput.text.toString()
+        val tanggalSelesai = binding.etTglSelesaiInput.text.toString()
         val jamBerangkat = binding.etJamBerangkatInput.text.toString()
         val jamKedatangan = binding.etJamKedatanganInput.text.toString()
         val adultPrice = binding.etAdultPrice.text.toString().toInt()
         val childPrice = binding.etChildPrice.text.toString().toInt()
         val initialStock = binding.etJmlPenumpangInput.text.toString().toInt()
 
+        val formatedDateBerangkat = tanggalBerangkat.substring(6, 10) + "-" + tanggalBerangkat.substring(3, 5) + "-" + tanggalBerangkat.substring(0, 2)
+        val formatedDateSelesai = tanggalSelesai.substring(6, 10) + "-" + tanggalSelesai.substring(3, 5) + "-" + tanggalSelesai.substring(0, 2)
+
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
         val ticketdata = TicketData(asalKota,asalBandara,destinasi,destinasiBandara,
-            "2022-11-25 13:39:42.408 +00:00",jamBerangkat,jamKedatangan, "sekali jalan",
+            formatedDateBerangkat,formatedDateSelesai,jamBerangkat,jamKedatangan, "sekali jalan",
             adultPrice,childPrice, TRUE, initialStock, initialStock )
 
         ticketVM.addticket(ticketdata,token).observe(viewLifecycleOwner){
-            if (it != null && it.message == "Success") {
+            if (it != null && it.message == "ticket created") {
                 Toast.makeText(context, "Data Berhasil disimpan", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context, "Data Gagal disimpan", Toast.LENGTH_SHORT).show()

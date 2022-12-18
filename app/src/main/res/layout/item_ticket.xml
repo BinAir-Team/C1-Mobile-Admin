@@ -47,7 +47,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="16dp"
-                android:text='@{ticket.date, default="2022-12-10"}' />
+                android:text='@{ticket.date_start, default="2022-12-10"}' />
 
             <TextView
                 android:id="@+id/tvJamBerangkat"
