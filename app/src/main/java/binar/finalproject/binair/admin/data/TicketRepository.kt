@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.admin.data.model.TicketData
 import binar.finalproject.binair.admin.data.remote.APIService
-import binar.finalproject.binair.admin.data.response.AddTicketResponse
-import binar.finalproject.binair.admin.data.response.DeleteTicketResponse
-import binar.finalproject.binair.admin.data.response.UpdateTicketResponse
+import binar.finalproject.binair.admin.data.response.*
 import javax.inject.Inject
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,6 +18,8 @@ class TicketRepository @Inject constructor(var apiService: APIService) {
     val updateticket : LiveData<UpdateTicketResponse?> = _updateTicket
     private val _deleteTicket = MutableLiveData<DeleteTicketResponse?>()
     val deleteticket : LiveData<DeleteTicketResponse?> = _deleteTicket
+    private val _allCityAirport = MutableLiveData<List<CityAirport>?>()
+    val allCityAirport: LiveData<List<CityAirport>?> = _allCityAirport
 
     fun addticket(dataTicket : TicketData, token : String) : LiveData<AddTicketResponse?>{
         apiService.addTicket(dataTicket, token).enqueue(object :Callback<AddTicketResponse>{
@@ -93,5 +93,29 @@ class TicketRepository @Inject constructor(var apiService: APIService) {
         return deleteticket
     }
 
+    fun callGetCityAirport(): LiveData<List<CityAirport>?> {
+        apiService.getAllCity().enqueue(object : Callback<CityAirportResponse> {
+            override fun onResponse(
+                call: Call<CityAirportResponse>,
+                response: Response<CityAirportResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _allCityAirport.postValue(result.data)
+                        Log.d("RESULT", "Result City : $result")
+                    } else {
+                        _allCityAirport.postValue(null)
+                    }
+                } else {
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
 
+            override fun onFailure(call: Call<CityAirportResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+        return allCityAirport
+    }
 }

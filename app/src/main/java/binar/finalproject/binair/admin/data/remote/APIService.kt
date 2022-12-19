@@ -11,9 +11,11 @@ interface APIService {
     fun registerUser(@Body data : DataRegister): Call<RegisterUserResponse>
 
     @POST("login")
-
     @FormUrlEncoded
     fun loginUser(@Field("email") email : String, @Field("password") password : String) : Call<LoginResponse>
+
+    @GET("search")
+    fun getAllCity() : Call<CityAirportResponse>
 
     @POST("tickets")
     fun addTicket(@Body data : TicketData, @Header("Authorization") Auth :  String) : Call<AddTicketResponse>

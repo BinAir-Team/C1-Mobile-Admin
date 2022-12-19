@@ -3,6 +3,7 @@ package binar.finalproject.binair.admin.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.admin.data.model.FlightRepository
+import binar.finalproject.binair.admin.data.response.CityAirport
 import binar.finalproject.binair.admin.data.response.DataTicket
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

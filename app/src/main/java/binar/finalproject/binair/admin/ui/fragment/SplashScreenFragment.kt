@@ -35,13 +35,13 @@ class SplashScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Handler(Looper.myLooper()!!).postDelayed({
-            if(sharedPref.getBoolean("firstRun",true)) {
-                editor.putBoolean("firstRun", false)
-                editor.apply()
-                findNavController().navigate(R.id.action_splashScreenFragment_to_carouselFragment)
-            }else{
+//            if(sharedPref.getBoolean("firstRun",true)) {
+//                editor.putBoolean("firstRun", false)
+//                editor.apply()
+//                findNavController().navigate(R.id.action_splashScreenFragment_to_carouselFragment)
+//            }else{
+//            }
                 findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
-            }
         },500)
     }
 

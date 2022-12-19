@@ -7,14 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant.dataPassenger
 import binar.finalproject.binair.admin.data.Constant.dataUser
 import binar.finalproject.binair.admin.data.model.TicketData
+import binar.finalproject.binair.admin.data.response.CityAirport
 import binar.finalproject.binair.admin.databinding.FragmentHomeBinding
 import binar.finalproject.binair.admin.ui.activity.MainActivity
+import binar.finalproject.binair.admin.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -24,13 +27,18 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
     private val calendar = Calendar.getInstance()
     lateinit var ticketVM : TicketViewModel
     private lateinit var sharedPrefs : SharedPreferences
-
+    private var cityFrom : String = "Jakarta"
+    private var airportFrom : String = "Soekarno Hatta"
+    private var cityTo : String = "Surabaya"
+    private var airportTo : String = "Juanda"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -81,6 +89,34 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
+    private fun setAutoCompleteData() {
+        ticketVM.callGetCityAirport().observe(viewLifecycleOwner){
+            if(it != null){
+                val city = it
+                val adapter = AutoCompleteAirportAdapter(requireContext(), city as java.util.ArrayList<CityAirport?>)
+                binding.apply {
+                    etFrom.threshold = 1
+                    etFrom.setAdapter(adapter)
+                    etDestination.threshold = 1
+                    etDestination.setAdapter(adapter)
+                    etFrom.setOnItemClickListener { adapterView, view, pos, l ->
+                        val data = adapter.getDataAirport(pos)
+                        cityFrom = data.city
+                        airportFrom = data.airport
+                        binding.etFrom.setText("${data.city} - ${data.code}")
+                    }
+                    etDestination.setOnItemClickListener { adapterView, view, pos, l ->
+                        val data = adapter.getDataAirport(pos)
+                        cityTo = data.city
+                        airportTo = data.airport
+                        binding.etDestination.setText("${data.city} - ${data.code}")
+                    }
+                }
+            }
+        }
+    }
+
     private fun showTimePickerDialog(kategori: String){
         val timePicker: MaterialTimePicker = MaterialTimePicker
             .Builder()
@@ -132,9 +168,7 @@ class HomeFragment : Fragment() {
 
     private fun addTicket(){
         val asalKota = binding.etFrom.text.toString()
-        val asalBandara = binding.etAirportFrom.text.toString()
         val destinasi = binding.etDestination.text.toString()
-        val destinasiBandara = binding.etAirportDestination.text.toString()
         val tanggal = binding.etTglBerangkatInput.text.toString()
         val jamBerangkat = binding.etJamBerangkatInput.text.toString()
         val jamKedatangan = binding.etJamKedatanganInput.text.toString()
@@ -144,7 +178,7 @@ class HomeFragment : Fragment() {
 
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
         val ticketdata = TicketData(asalKota,asalBandara,destinasi,destinasiBandara,
-            "2022-11-25 13:39:42.408 +00:00",jamBerangkat,jamKedatangan, "sekali jalan",
+            "2022-11-25 13:39:42.408 +00:00",jamBerangkat,jamKedatangan, "oneway",
             adultPrice,childPrice, TRUE, initialStock, initialStock )
 
         ticketVM.addticket(ticketdata,token).observe(viewLifecycleOwner){

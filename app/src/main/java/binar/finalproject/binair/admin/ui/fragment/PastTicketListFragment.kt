@@ -65,7 +65,7 @@ class PastTicketListFragment : Fragment() {
     }
 
     private fun setDataToRecView(data: List<DataTicket>) {
-        val adapter : ListTicketAdapter = ListTicketAdapter(data)
+        val adapter = ListTicketAdapter(data)
         val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvListTicket.adapter = adapter
         binding.rvListTicket.layoutManager = layoutManager
