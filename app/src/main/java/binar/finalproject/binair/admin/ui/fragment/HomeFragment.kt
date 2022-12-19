@@ -7,17 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant.dataPassenger
 import binar.finalproject.binair.admin.data.Constant.dataUser
 import binar.finalproject.binair.admin.data.model.TicketData
-import binar.finalproject.binair.admin.data.response.CityAirport
 import binar.finalproject.binair.admin.databinding.FragmentHomeBinding
 import binar.finalproject.binair.admin.ui.activity.MainActivity
-import binar.finalproject.binair.admin.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -27,8 +24,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
@@ -69,6 +64,14 @@ class HomeFragment : Fragment() {
             etTglBerangkatInput.setOnFocusChangeListener { view, b ->
                 if (b) {
                     showDatePickerDialog("berangkat")
+                }
+            }
+            etTglSelesaiInput.setOnClickListener {
+                showDatePickerDialog("selesai")
+            }
+            etTglSelesaiInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    showDatePickerDialog("selesai")
                 }
             }
             etJamBerangkatInput.setOnClickListener{
@@ -164,12 +167,19 @@ class HomeFragment : Fragment() {
         if(kategori == "berangkat") {
             binding.etTglBerangkatInput.setText(formatedDate)
         }
+        if(kategori == "selesai") {
+            binding.etTglSelesaiInput.setText(formatedDate)
+        }
     }
 
     private fun addTicket(){
         val asalKota = binding.etFrom.text.toString()
+        val asalBandara = binding.etAirportFrom.text.toString()
         val destinasi = binding.etDestination.text.toString()
         val tanggal = binding.etTglBerangkatInput.text.toString()
+        val destinasiBandara = binding.etAirportDestination.text.toString()
+        val tanggalBerangkat = binding.etTglBerangkatInput.text.toString()
+        val tanggalSelesai = binding.etTglSelesaiInput.text.toString()
         val jamBerangkat = binding.etJamBerangkatInput.text.toString()
         val jamKedatangan = binding.etJamKedatanganInput.text.toString()
         val adultPrice = binding.etAdultPrice.text.toString().toInt()
@@ -182,7 +192,7 @@ class HomeFragment : Fragment() {
             adultPrice,childPrice, TRUE, initialStock, initialStock )
 
         ticketVM.addticket(ticketdata,token).observe(viewLifecycleOwner){
-            if (it != null && it.message == "Success") {
+            if (it != null && it.message == "ticket created") {
                 Toast.makeText(context, "Data Berhasil disimpan", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context, "Data Gagal disimpan", Toast.LENGTH_SHORT).show()

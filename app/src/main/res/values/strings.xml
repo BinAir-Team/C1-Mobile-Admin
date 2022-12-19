@@ -91,6 +91,7 @@
     <string name="list_EditTicket">Edit Ticket</string>
     <string name="btn_saveEdit">Simpan Tiket</string>
     <string name="review_delete">Masukkan Password untuk Verifikasi</string>
-    <string name="tipe_penerbangan">Tipe Penerbangan</string>
-    <string name="sekali_jalan">Sekali Jalan</string>
+    <string name="Label_date_end">Tanggal Selesai</string>
+    <string name="label_tanggal_Selesai">Tanggal Selesai</string>
+    <string name="ex_tgl_selesai">27/12/2022</string>
 </resources>

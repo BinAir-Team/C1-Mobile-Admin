@@ -31,8 +31,10 @@ data class DataTicket(
     val createdAt: String?,
     @SerializedName("curr_stock")
     val currStock: Int?,
-    @SerializedName("date")
-    var date: String,
+    @SerializedName("date_start")
+    var date_start: String,
+    @SerializedName("date_end")
+    var date_end: String,
     @SerializedName("departure_time")
     val departureTime: String?,
     @SerializedName("from")

@@ -160,6 +160,31 @@
                                 android:text="@string/ex_tgl_brkt"
                                 android:editable="false"/>
                         </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tglSelesaiInputContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:hint="@string/label_tanggal_berangkat"
+                            android:textColorHint="@color/black"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="@color/content_grey"
+                            app:hintTextColor="@color/content_grey">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etTglSelesaiInput"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableStart="@drawable/home_schedule"
+                                android:drawablePadding="8dp"
+                                android:inputType="none"
+                                android:text="@string/ex_tgl_selesai"
+                                android:editable="false"/>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
                         <LinearLayout

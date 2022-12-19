@@ -126,7 +126,7 @@ class LoginFragment : Fragment() {
 
     private fun observeLoginResult(email: String, pass: String) {
         userVM.loginUser(email,pass).observe(viewLifecycleOwner) {
-            if (it != null) {
+            if (it != null && it.status == "success") {
                 val namaLengkap = it.data.firstname + " " + it.data.lastname
                 editor.putString("token", it.data.accessToken)
                 editor.putString("namaLengkap", namaLengkap)

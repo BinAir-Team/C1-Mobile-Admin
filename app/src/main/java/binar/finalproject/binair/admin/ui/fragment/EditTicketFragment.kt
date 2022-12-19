@@ -61,6 +61,14 @@ class EditTicketFragment : Fragment() {
                     showDatePickerDialog("berangkat")
                 }
             }
+            etTglSelesaiInput.setOnClickListener {
+                showDatePickerDialog("selesai")
+            }
+            etTglSelesaiInput.setOnFocusChangeListener { view, b ->
+                if (b) {
+                    showDatePickerDialog("selesai")
+                }
+            }
             etJamBerangkatInput.setOnClickListener{
                 showTimePickerDialog("keberangkatan")
             }
@@ -119,6 +127,9 @@ class EditTicketFragment : Fragment() {
         if(kategori == "berangkat") {
             binding.etTglBerangkatInput.setText(formatedDate)
         }
+        if(kategori == "selesai"){
+            binding.etTglSelesaiInput.setText(formatedDate)
+        }
     }
 
     private fun updateTime(kategori: String, time : String){
@@ -135,9 +146,13 @@ class EditTicketFragment : Fragment() {
     }
 
     private fun setDataToView() {
-        val oldDate = clickedTicket.date.substring(0, 10)
-        val formatedDate = oldDate.substring(8, 10) + "/" + oldDate.substring(5, 7) + "/" + oldDate.substring(0, 4)
-        clickedTicket.date = formatedDate
+        val oldDateStart = clickedTicket.date_start.substring(0, 10)
+        val formatedDateStart = oldDateStart.substring(8, 10) + "/" + oldDateStart.substring(5, 7) + "/" + oldDateStart.substring(0, 4)
+        clickedTicket.date_start = formatedDateStart
+
+        val oldDateEnd = clickedTicket.date_end.substring(0, 10)
+        val formatedDateEnd = oldDateEnd.substring(8, 10) + "/" + oldDateEnd.substring(5, 7) + "/" + oldDateEnd.substring(0, 4)
+        clickedTicket.date_end = formatedDateEnd
         binding.ticket = clickedTicket
     }
 
@@ -146,18 +161,20 @@ class EditTicketFragment : Fragment() {
         val asalBandara = binding.etAirportFrom.text.toString()
         val destinasi = binding.etDestination.text.toString()
         val destinasiBandara = binding.etAirportDestination.text.toString()
-        val tanggal = binding.etTglBerangkatInput.text.toString()
+        val tanggalBerangkat = binding.etTglBerangkatInput.text.toString()
+        val tanggalSelesai = binding.etTglSelesaiInput.text.toString()
         val jamBerangkat = binding.etJamBerangkatInput.text.toString()
         val jamKedatangan = binding.etJamKedatanganInput.text.toString()
         val adultPrice = binding.etAdultPrice.text.toString().toInt()
         val childPrice = binding.etChildPrice.text.toString().toInt()
         val initialStock = binding.etJmlPenumpangInput.text.toString().toInt()
 
-        val formatedDate = tanggal.substring(6, 10) + "-" + tanggal.substring(3, 5) + "-" + tanggal.substring(0, 2)
+        val formatedDateBerangkat = tanggalBerangkat.substring(6, 10) + "-" + tanggalBerangkat.substring(3, 5) + "-" + tanggalBerangkat.substring(0, 2)
+        val formatedDateSelesai = tanggalSelesai.substring(6, 10) + "-" + tanggalSelesai.substring(3, 5) + "-" + tanggalSelesai.substring(0, 2)
 
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
         val ticketdata = TicketData(asalKota,asalBandara,destinasi,destinasiBandara,
-            formatedDate,jamBerangkat,jamKedatangan, "sekali jalan",
+            formatedDateBerangkat,formatedDateSelesai,jamBerangkat,jamKedatangan, "sekali jalan",
             adultPrice,childPrice, Boolean.TRUE, initialStock, initialStock )
 
         ticketVM.updateticket(clickedTicket.id, ticketdata,token).observe(viewLifecycleOwner){
