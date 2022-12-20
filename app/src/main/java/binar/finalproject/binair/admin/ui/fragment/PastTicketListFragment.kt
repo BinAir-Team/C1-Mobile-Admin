@@ -2,12 +2,14 @@ package binar.finalproject.binair.admin.ui.fragment
 
 import android.app.AlertDialog
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +26,7 @@ import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class PastTicketListFragment : Fragment() {
     private lateinit var binding : FragmentPastTicketListBinding
     private lateinit var flightVM : FlightViewModel
@@ -71,12 +74,14 @@ class PastTicketListFragment : Fragment() {
         binding.rvListTicket.layoutManager = layoutManager
 
         adapter.onClick = {
-            val action = TicketListFragmentDirections.actionTicketListFragmentToTicketDetailsFragment2(it)
+            if(it.date_end == null){it.date_end = ""}
+            val action = PastTicketListFragmentDirections.actionPastTicketListFragmentToTicketDetailsFragment(it)
             findNavController().navigate(action)
         }
 
         adapter.editClick = {
-            val action = TicketListFragmentDirections.actionTicketListFragmentToEditTicketFragment(it)
+            if(it.date_end == null){it.date_end = ""}
+            val action = PastTicketListFragmentDirections.actionPastTicketListFragmentToEditTicketFragment(it)
             findNavController().navigate(action)
         }
 
@@ -106,8 +111,6 @@ class PastTicketListFragment : Fragment() {
                 } else {
                     Toast.makeText(context, "Password Salah", Toast.LENGTH_SHORT).show()
                 }
-
-
             }
             dialogBinding.btnBack.setOnClickListener {
                 findNavController().popBackStack()
@@ -115,8 +118,8 @@ class PastTicketListFragment : Fragment() {
             }
             alertDialog.show()
         }
-
     }
+
     private fun showLoading(condition : Boolean) {
         if (condition) {
             binding.progressBar.visibility = View.VISIBLE

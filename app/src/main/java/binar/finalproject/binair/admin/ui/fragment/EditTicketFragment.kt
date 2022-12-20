@@ -150,8 +150,9 @@ class EditTicketFragment : Fragment() {
         val formatedDateStart = oldDateStart.substring(8, 10) + "/" + oldDateStart.substring(5, 7) + "/" + oldDateStart.substring(0, 4)
         clickedTicket.date_start = formatedDateStart
 
-        val oldDateEnd = clickedTicket.date_end.substring(0, 10)
-        val formatedDateEnd = oldDateEnd.substring(8, 10) + "/" + oldDateEnd.substring(5, 7) + "/" + oldDateEnd.substring(0, 4)
+        val oldDateEnd = clickedTicket.date_end?.substring(0, 10)
+        val formatedDateEnd = (oldDateEnd?.substring(8, 10) ?: "") + "/" + (oldDateEnd?.substring(5, 7)
+            ?: "") + "/" + (oldDateEnd?.substring(0, 4) ?: "")
         clickedTicket.date_end = formatedDateEnd
         binding.ticket = clickedTicket
     }

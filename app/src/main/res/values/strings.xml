@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Binair Buyer</string>
+    <string name="app_name">Admin Binair</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="notification_menu">Notification</string>
@@ -91,7 +91,9 @@
     <string name="list_EditTicket">Edit Ticket</string>
     <string name="btn_saveEdit">Simpan Tiket</string>
     <string name="review_delete">Masukkan Password untuk Verifikasi</string>
-    <string name="Label_date_end">Tanggal Selesai</string>
-    <string name="label_tanggal_Selesai">Tanggal Selesai</string>
+    <string name="Label_date_end">Tanggal Pulang</string>
+    <string name="label_tanggal_Selesai">Tanggal Pulang</string>
     <string name="ex_tgl_selesai">27/12/2022</string>
+    <string name="tipe_penerbangan">Tipe Penerbangan</string>
+    <string name="sekali_jalan">Sekali Jalan</string>
 </resources>

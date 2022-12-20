@@ -122,7 +122,8 @@
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxStrokeColor="@color/content_grey"
-                            app:hintTextColor="@color/content_grey">
+                            app:hintTextColor="@color/content_grey"
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                             <AutoCompleteTextView
                                 android:id="@+id/etTipe"
@@ -165,7 +166,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:hint="@string/label_tanggal_berangkat"
+                            android:hint="@string/label_tanggal_Selesai"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
                             app:boxCornerRadiusBottomEnd="12dp"
@@ -173,7 +174,8 @@
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxStrokeColor="@color/content_grey"
-                            app:hintTextColor="@color/content_grey">
+                            app:hintTextColor="@color/content_grey"
+                            android:visibility="gone">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etTglSelesaiInput"
@@ -273,8 +275,7 @@
                                 android:id="@+id/etAdultPrice"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="none"
-                                android:editable="false"
+                                android:inputType="number"
                                 android:text="@string/ex_hargadewasa" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -297,8 +298,7 @@
                                 android:id="@+id/etChildPrice"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="none"
-                                android:editable="false"
+                                android:inputType="number"
                                 android:text="@string/ex_hargaanakanak" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -322,8 +322,7 @@
                                 android:id="@+id/etJmlPenumpangInput"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:inputType="none"
-                                android:editable="false"
+                                android:inputType="number"
                                 android:text="@string/ex_kapasitasPenumpang" />
                         </com.google.android.material.textfield.TextInputLayout>
                         <Button

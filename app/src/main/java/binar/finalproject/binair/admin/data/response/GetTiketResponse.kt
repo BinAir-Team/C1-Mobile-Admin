@@ -34,7 +34,7 @@ data class DataTicket(
     @SerializedName("date_start")
     var date_start: String,
     @SerializedName("date_end")
-    var date_end: String,
+    var date_end: String? = null,
     @SerializedName("departure_time")
     val departureTime: String?,
     @SerializedName("from")

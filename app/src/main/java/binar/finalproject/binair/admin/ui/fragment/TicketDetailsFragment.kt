@@ -2,16 +2,22 @@ package binar.finalproject.binair.admin.ui.fragment
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.navigation.fragment.findNavController
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.response.DataTicket
 import binar.finalproject.binair.admin.databinding.FragmentTicketDetailsBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
+@RequiresApi(Build.VERSION_CODES.O)
 class TicketDetailsFragment : Fragment() {
     private lateinit var binding : FragmentTicketDetailsBinding
     private lateinit var clickedTicket : DataTicket
@@ -43,14 +49,30 @@ class TicketDetailsFragment : Fragment() {
     }
 
     private fun setDataToView() {
-        val oldDateStart = clickedTicket.date_start.substring(0, 10)
-        val formatedDateStart = oldDateStart.substring(8, 10) + "/" + oldDateStart.substring(5, 7) + "/" + oldDateStart.substring(0, 4)
+        val oldDateStart = clickedTicket.date_start
+        val formatedDateStart = formatDate(oldDateStart)
         clickedTicket.date_start = formatedDateStart
 
-        val oldDateEnd = clickedTicket.date_end.substring(0, 10)
-        val formatedDateEnd = oldDateEnd.substring(8, 10) + "/" + oldDateEnd.substring(5, 7) + "/" + oldDateEnd.substring(0, 4)
-        clickedTicket.date_end = formatedDateEnd
+        val oldDateEnd = clickedTicket.date_end
+        if (oldDateEnd != null) {
+            val formatedDateEnd = formatDate(oldDateEnd)
+            clickedTicket.date_end = formatedDateEnd
+        }else{
+            binding.tvDateEnd.visibility = View.GONE
+            binding.labelDateEnd.visibility = View.GONE
+        }
 
         binding.ticket = clickedTicket
+    }
+
+    fun formatDate(date : String) : String {
+        try {
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val localDate = LocalDate.parse(date, formatter)
+            val formatter2 = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale("id","ID"))
+            return localDate.format(formatter2)
+        }catch (e : Exception){
+            return date
+        }
     }
 }

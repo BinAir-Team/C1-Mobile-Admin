@@ -8,7 +8,7 @@ data class TicketData(
     val airport_from: String,
     val to: String?,
     val airport_to: String,
-    val date_start: String?,
+    val date_start: String,
     val date_end: String?,
     val departure_time: String?,
     val arrival_time: String,
