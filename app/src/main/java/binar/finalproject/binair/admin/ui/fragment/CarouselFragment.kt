@@ -65,7 +65,7 @@ class CarouselFragment : Fragment() {
         binding.containerSwipeUp.setOnTouchListener { view, event ->
             when(event.action){
                 MotionEvent.ACTION_UP -> {
-//                    findNavController().navigate(R.id.action_carouselFragment2_to_homeFragment)
+                    findNavController().navigate(R.id.action_carouselFragment_to_loginFragment)
                 }
             }
 //            view.performClick()

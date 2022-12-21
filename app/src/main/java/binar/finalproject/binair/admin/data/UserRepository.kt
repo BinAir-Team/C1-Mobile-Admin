@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.admin.data.model.DataRegister
 import binar.finalproject.binair.admin.data.remote.APIService
+import binar.finalproject.binair.admin.data.response.GetUserResponse
 import binar.finalproject.binair.admin.data.response.LogOutResponse
 import binar.finalproject.binair.admin.data.response.LoginResponse
 import binar.finalproject.binair.admin.data.response.RegisterUserResponse
@@ -20,6 +21,8 @@ class UserRepository @Inject constructor(var apiService: APIService) {
     val loginUser : LiveData<LoginResponse?> = _loginUser
     private val _logout = MutableLiveData<LogOutResponse?>()
     val logout : LiveData<LogOutResponse?> = _logout
+    private val _currentUser = MutableLiveData<GetUserResponse?>()
+    val currentUser : LiveData<GetUserResponse?> = _currentUser
 
     fun registerUser(dataUser : DataRegister) : LiveData<RegisterUserResponse?> {
         apiService.registerUser(dataUser).enqueue(object : Callback<RegisterUserResponse> {
@@ -90,5 +93,28 @@ class UserRepository @Inject constructor(var apiService: APIService) {
             }
         })
         return logout
+    }
+
+    fun getUser(token : String) : LiveData<GetUserResponse?> {
+        apiService.getUser(token).enqueue(object : Callback<GetUserResponse>{
+            override fun onResponse(
+                call: Call<GetUserResponse>,
+                response: Response<GetUserResponse>
+            ) {
+                if (response.isSuccessful){
+                    val dataResponse = response.body()
+                    _currentUser.postValue(dataResponse)
+                }else{
+                    _currentUser.postValue(null)
+                    Log.e("Error not successful : ", response.message())
+                }
+            }
+
+            override fun onFailure(call: Call<GetUserResponse>, t: Throwable) {
+                _currentUser.postValue(null)
+                Log.d("Error onFailure : ", t.message!!)
+            }
+        })
+        return currentUser
     }
 }

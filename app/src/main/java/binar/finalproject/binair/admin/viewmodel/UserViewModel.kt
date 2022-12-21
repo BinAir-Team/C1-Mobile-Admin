@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import binar.finalproject.binair.admin.data.UserRepository
 import binar.finalproject.binair.admin.data.model.DataRegister
+import binar.finalproject.binair.admin.data.response.GetUserResponse
 import binar.finalproject.binair.admin.data.response.LogOutResponse
 import binar.finalproject.binair.admin.data.response.LoginResponse
 import binar.finalproject.binair.admin.data.response.RegisterUserResponse
@@ -17,4 +18,6 @@ class UserViewModel @Inject constructor(private var userRepo : UserRepository) :
     fun loginUser(email : String, password : String) : LiveData<LoginResponse?> = userRepo.loginUser(email, password)
 
     fun logoutUser(Auth: String):LiveData<LogOutResponse?> = userRepo.logoutProfile(Auth)
+
+    fun getUser(token : String) : LiveData<GetUserResponse?> = userRepo.getUser(token)
 }

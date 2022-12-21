@@ -14,6 +14,9 @@ interface APIService {
     @FormUrlEncoded
     fun loginUser(@Field("email") email : String, @Field("password") password : String) : Call<LoginResponse>
 
+    @GET("user")
+    fun getUser(@Header("Authorization") token : String) : Call<GetUserResponse>
+
     @GET("search")
     fun getAllCity() : Call<CityAirportResponse>
 

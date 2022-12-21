@@ -1,5 +1,6 @@
 package binar.finalproject.binair.admin.ui.fragment
 
+import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.SharedPreferences
@@ -9,13 +10,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.admin.data.Constant
 import binar.finalproject.binair.admin.data.model.TicketData
+import binar.finalproject.binair.admin.data.response.CityAirport
 import binar.finalproject.binair.admin.data.response.DataTicket
 import binar.finalproject.binair.admin.databinding.FragmentEditTicketBinding
+import binar.finalproject.binair.admin.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -34,6 +38,10 @@ class EditTicketFragment : Fragment() {
     private val calendar = Calendar.getInstance()
     lateinit var ticketVM : TicketViewModel
     private lateinit var sharedPrefs : SharedPreferences
+    private lateinit var cityFrom : String
+    private lateinit var airportFrom : String
+    private lateinit var cityTo : String
+    private lateinit var airportTo : String
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -51,6 +59,7 @@ class EditTicketFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setListener()
         getDataFromBundle()
+        setAutoCompleteData()
         setDataToView()
     }
     private fun setListener(){
@@ -121,6 +130,50 @@ class EditTicketFragment : Fragment() {
             Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private fun setAutoCompleteData() {
+        val dataTipe = arrayOf("Sekali Jalan", "Pulang Pergi")
+        val adapterTipe = ArrayAdapter(requireContext(), R.layout.simple_list_item_1, dataTipe)
+        ticketVM.callGetCityAirport().observe(viewLifecycleOwner){
+            if(it != null){
+                val city = it
+                val adapter = AutoCompleteAirportAdapter(requireContext(), city as ArrayList<CityAirport?>)
+                binding.apply {
+                    etFrom.threshold = 1
+                    etFrom.setAdapter(adapter)
+                    etDestination.threshold = 1
+                    etDestination.setAdapter(adapter)
+                    etFrom.setOnItemClickListener { adapterView, view, pos, l ->
+                        val data = adapter.getDataAirport(pos)
+                        cityFrom = data.city
+                        airportFrom = data.airport
+                        binding.etFrom.setText("${data.city} - ${data.code}")
+                    }
+                    etDestination.setOnItemClickListener { adapterView, view, pos, l ->
+                        val data = adapter.getDataAirport(pos)
+                        cityTo = data.city
+                        airportTo = data.airport
+                        binding.etDestination.setText("${data.city} - ${data.code}")
+                    }
+                    etTipe.threshold = 0
+                    etTipe.setAdapter(adapterTipe)
+                    etTipe.setOnItemClickListener(){ adapterView, view, pos, l ->
+                        if(dataTipe[pos] == "Pulang Pergi"){
+                            binding.tglSelesaiInputContainer.visibility = View.VISIBLE
+                        }else{
+                            binding.tglSelesaiInputContainer.visibility = View.GONE
+                        }
+                        binding.etTipe.setText(dataTipe[pos])
+                    }
+                    etTipe.setOnClickListener{
+                        etTipe.maxLines = 5
+                        etTipe.showDropDown()
+                    }
+                }
+            }
+        }
+    }
+
     private fun formatDate(date : Date) : String {
         val myFormat = "dd/MM/yyyy"
         val dateFormat = SimpleDateFormat(myFormat)
@@ -174,9 +227,7 @@ class EditTicketFragment : Fragment() {
 
     private fun saveedit(){
         val asalKota = binding.etFrom.text.toString()
-        val asalBandara = binding.etAirportFrom.text.toString()
         val destinasi = binding.etDestination.text.toString()
-        val destinasiBandara = binding.etAirportDestination.text.toString()
         val tanggalBerangkat = binding.etTglBerangkatInput.text.toString()
         val tanggalSelesai = binding.etTglSelesaiInput.text.toString()
         val jamBerangkat = binding.etJamBerangkatInput.text.toString()
@@ -189,7 +240,7 @@ class EditTicketFragment : Fragment() {
         val formatedDateSelesai = tanggalSelesai.substring(6, 10) + "-" + tanggalSelesai.substring(3, 5) + "-" + tanggalSelesai.substring(0, 2)
 
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
-        val ticketdata = TicketData(asalKota,asalBandara,destinasi,destinasiBandara,
+        val ticketdata = TicketData(cityFrom,airportFrom,cityTo,airportTo,
             formatedDateBerangkat,formatedDateSelesai,jamBerangkat,jamKedatangan, "sekali jalan",
             adultPrice,childPrice, Boolean.TRUE, initialStock, initialStock )
 
