@@ -3,12 +3,14 @@ package binar.finalproject.binair.admin.ui.fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.admin.data.Constant
 import binar.finalproject.binair.admin.data.model.TicketData
@@ -20,9 +22,12 @@ import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Boolean
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class EditTicketFragment : Fragment() {
     private lateinit var binding : FragmentEditTicketBinding
     private lateinit var clickedTicket : DataTicket
@@ -146,15 +151,25 @@ class EditTicketFragment : Fragment() {
     }
 
     private fun setDataToView() {
-        val oldDateStart = clickedTicket.date_start.substring(0, 10)
-        val formatedDateStart = oldDateStart.substring(8, 10) + "/" + oldDateStart.substring(5, 7) + "/" + oldDateStart.substring(0, 4)
-        clickedTicket.date_start = formatedDateStart
+        val oldDateStart = clickedTicket.dateStart
+        val formatedDateStart = formatDate(oldDateStart)
+        clickedTicket.dateStart = formatedDateStart
 
-        val oldDateEnd = clickedTicket.date_end?.substring(0, 10)
-        val formatedDateEnd = (oldDateEnd?.substring(8, 10) ?: "") + "/" + (oldDateEnd?.substring(5, 7)
-            ?: "") + "/" + (oldDateEnd?.substring(0, 4) ?: "")
-        clickedTicket.date_end = formatedDateEnd
+        val oldDateEnd = clickedTicket.dateEnd
+        val formatedDateEnd = oldDateEnd?.let { formatDate(it) }
+        clickedTicket.dateEnd = formatedDateEnd
         binding.ticket = clickedTicket
+    }
+
+    fun formatDate(date : String) : String {
+        try {
+            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val localDate = LocalDate.parse(date, formatter)
+            val formatter2 = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale("id","ID"))
+            return localDate.format(formatter2)
+        }catch (e : Exception){
+            return date
+        }
     }
 
     private fun saveedit(){

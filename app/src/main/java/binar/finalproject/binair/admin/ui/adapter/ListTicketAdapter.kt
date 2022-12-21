@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
-class ListTicketAdapter(private val listTicket : List<DataTicket>) : RecyclerView.Adapter<ListTicketAdapter.ViewHolder>() {
+class ListTicketAdapter(private val listTicket : List<DataTicket?>) : RecyclerView.Adapter<ListTicketAdapter.ViewHolder>() {
     var onClick: ((DataTicket) -> Unit)? = null
     var editClick: ((DataTicket) -> Unit)? = null
     var deleteClick : ((DataTicket) -> Unit)? = null
@@ -24,8 +24,8 @@ class ListTicketAdapter(private val listTicket : List<DataTicket>) : RecyclerVie
     ): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DataTicket) {
             try {
-                item.date_start = formatDate(item.date_start)
-                item.date_end = item.date_end?.let { formatDate(it) }
+                item.dateStart = formatDate(item.dateStart)
+                item.dateEnd = item.dateEnd?.let { formatDate(it) }
             }catch (e : Exception){
                 e.printStackTrace()
             }
@@ -53,14 +53,13 @@ class ListTicketAdapter(private val listTicket : List<DataTicket>) : RecyclerVie
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = ItemTicketBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(v,onClick, editClick,deleteClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listTicket[position])
+        listTicket[position]?.let { holder.bind(it) }
     }
 
     override fun getItemCount(): Int = listTicket.size

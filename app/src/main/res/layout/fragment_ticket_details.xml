@@ -198,7 +198,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/labelTanggal"
-                                    android:text= '@{ticket.date_start, default = "20/07/2022"}'
+                                    android:text= '@{ticket.dateStart, default = "20/07/2022"}'
                                     android:textStyle="bold"/>
                             </LinearLayout>
                             <LinearLayout
@@ -225,7 +225,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/labelTanggal"
-                                    android:text= '@{ticket.date_end, default = "20/07/2022"}'
+                                    android:text= '@{ticket.dateEnd, default = "20/07/2022"}'
                                     android:textStyle="bold"/>
                             </LinearLayout>
                         </LinearLayout>
@@ -258,34 +258,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/labelTanggal"
                                     android:text= "-"
-                                    android:textStyle="bold"/>
-                            </LinearLayout>
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_below="@id/labelTanggal"
-                                android:layout_weight="1"
-                                android:layout_width="match_parent"
-                                android:layout_marginLeft="16dp"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:id="@+id/labelBagasi"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_below="@id/labelType"
-                                    android:fontFamily="@font/inter_light"
-                                    android:text="@string/Label_Jam"
-
-                                    android:textSize="16dp" />
-
-                                <TextView
-                                    android:id="@+id/tvBagage"
-                                    android:drawableStart="@drawable/ic_baggage"
-                                    android:drawablePadding="4dp"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_bagasi"
-                                    android:layout_below="@id/labelTanggal"
                                     android:textStyle="bold"/>
                             </LinearLayout>
                         </LinearLayout>

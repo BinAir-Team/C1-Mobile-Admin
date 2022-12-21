@@ -205,7 +205,7 @@
                                     android:drawableStart="@drawable/home_schedule"
                                     android:drawablePadding="8dp"
                                     android:inputType="none"
-                                    android:text='@{ticket.date_start, default = @string/ex_tgl_brkt}'/>
+                                    android:text='@{ticket.dateStart, default = @string/ex_tgl_brkt}'/>
                             </com.google.android.material.textfield.TextInputLayout>
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/tglSelesaiInputContainer"
@@ -229,7 +229,7 @@
                                     android:drawableStart="@drawable/home_schedule"
                                     android:drawablePadding="8dp"
                                     android:inputType="none"
-                                    android:text='@{ticket.date_end, default = @string/ex_tgl_brkt}'/>
+                                    android:text='@{ticket.dateEnd, default = @string/ex_tgl_brkt}'/>
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout

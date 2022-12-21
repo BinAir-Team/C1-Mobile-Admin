@@ -45,7 +45,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/label_sudahjalan"
+                        android:text="@string/label_sekali_jalan"
                         android:textColor="@color/content_grey"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>
@@ -65,20 +65,34 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/label_akan_datang"
+                        android:text="@string/label_pulang_pergi"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginHorizontal="16dp"
-            android:id="@+id/rvListTicket"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cvTripContainer"
-            android:layout_marginTop="10dp"/>
+            android:layout_below="@id/cvTripContainer">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvListTicket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_above="@id/pbRecView" />
+
+            <ProgressBar
+                android:id="@+id/pbRecView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="12dp"
+                android:visibility="gone" />
+        </RelativeLayout>
 
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/progressBar"

@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".ui.fragment.TicketListFragment">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_home" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cvTripContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="60dp"
         android:padding="4dp"
-        app:cardCornerRadius="32dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:cardCornerRadius="32dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -40,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/label_sudahjalan"
+                    android:text="@string/label_sekali_jalan"
                     android:textColor="@color/white"
                     android:textSize="12dp" />
             </androidx.cardview.widget.CardView>
@@ -61,20 +63,34 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/label_akan_datang"
+                    android:text="@string/label_pulang_pergi"
                     android:textColor="@color/content_grey"
                     android:textSize="12dp" />
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginHorizontal="16dp"
-        android:id="@+id/rvListTicket"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/cvTripContainer"
-        android:layout_marginTop="10dp"/>
+        android:layout_below="@id/cvTripContainer">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvListTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_above="@id/pbRecView" />
+
+        <ProgressBar
+            android:id="@+id/pbRecView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="12dp"
+            android:visibility="gone" />
+    </RelativeLayout>
 
     <com.github.ybq.android.spinkit.SpinKitView
         android:id="@+id/progressBar"
@@ -82,8 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:SpinKit_Color="@color/main_blue"
-        android:visibility="gone"
         android:layout_marginTop="200dp"
-        />
-</LinearLayout>
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:SpinKit_Color="@color/main_blue" />
+</RelativeLayout>

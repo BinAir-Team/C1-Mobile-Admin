@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import binar.finalproject.binair.admin.data.remote.APIService
+import binar.finalproject.binair.admin.data.response.DataPageTicket
 import binar.finalproject.binair.admin.data.response.DataTicket
 import binar.finalproject.binair.admin.data.response.GetTiketResponse
 import retrofit2.Call
@@ -12,11 +13,11 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class FlightRepository @Inject constructor (var client : APIService){
-    private val _allTicket = MutableLiveData<List<DataTicket>?>()
-    val allTicket : LiveData<List<DataTicket>?> = _allTicket
+    private val _allTicket = MutableLiveData<DataPageTicket?>()
+    val allTicket : LiveData<DataPageTicket?> = _allTicket
 
-    fun callGetAllTicket(willFly : String) : LiveData<List<DataTicket>?>{
-        client.getAllTicket(willFly).enqueue(object : Callback<GetTiketResponse>{
+    fun callGetAllTicket(willFly : String,type : String) : LiveData<DataPageTicket?> {
+        client.getAllTicket(willFly, type).enqueue(object : Callback<GetTiketResponse>{
             override fun onResponse(
                 call: Call<GetTiketResponse>,
                 response: Response<GetTiketResponse>
@@ -38,6 +39,6 @@ class FlightRepository @Inject constructor (var client : APIService){
                 Log.e("Error : ", "onFailure: ${t.message}")
             }
         })
-        return  allTicket
+        return allTicket
     }
 }

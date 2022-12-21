@@ -24,7 +24,7 @@ interface APIService {
     fun logout(@Header("Authorization") Auth :  String) : Call<LogOutResponse>
 
     @GET("tickets")
-    fun getAllTicket(@Query("willFly") willFly : String) : Call<GetTiketResponse>
+    fun getAllTicket(@Query("willFly") willFly : String, @Query("type") type : String, @Query("size") size : String = "100") : Call<GetTiketResponse>
 
     @PUT("tickets/{id}")
     fun updateTicket(@Path("id") id : String ,@Body data : TicketData, @Header("Authorization") Auth :  String) : Call<UpdateTicketResponse>

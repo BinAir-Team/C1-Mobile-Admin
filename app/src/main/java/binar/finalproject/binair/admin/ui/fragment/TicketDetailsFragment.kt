@@ -49,14 +49,14 @@ class TicketDetailsFragment : Fragment() {
     }
 
     private fun setDataToView() {
-        val oldDateStart = clickedTicket.date_start
+        val oldDateStart = clickedTicket.dateStart
         val formatedDateStart = formatDate(oldDateStart)
-        clickedTicket.date_start = formatedDateStart
+        clickedTicket.dateStart = formatedDateStart
 
-        val oldDateEnd = clickedTicket.date_end
+        val oldDateEnd = clickedTicket.dateEnd
         if (oldDateEnd != null) {
             val formatedDateEnd = formatDate(oldDateEnd)
-            clickedTicket.date_end = formatedDateEnd
+            clickedTicket.dateEnd = formatedDateEnd
         }else{
             binding.tvDateEnd.visibility = View.GONE
             binding.labelDateEnd.visibility = View.GONE

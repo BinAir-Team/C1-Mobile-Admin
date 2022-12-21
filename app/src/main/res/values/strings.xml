@@ -74,8 +74,6 @@
     <string name="ex_hargadewasa">200000</string>
     <string name="label_hargaAnakAnak">Harga Anak Anak</string>
     <string name="ex_hargaanakanak">150000</string>
-    <string name="label_sudahjalan">Sudah Jalan</string>
-    <string name="label_akan_datang">Akan Datang</string>
     <string name="btn_edit">Edit</string>
     <string name="btn_delete">Delete</string>
     <string name="list_ticket">List Tiket</string>
