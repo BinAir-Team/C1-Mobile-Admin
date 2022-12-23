@@ -23,7 +23,6 @@ import binar.finalproject.binair.admin.databinding.FragmentTicketListBinding
 import binar.finalproject.binair.admin.databinding.ReviewDeleteTicketBinding
 import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.ui.adapter.ListTicketAdapter
-import binar.finalproject.binair.admin.viewmodel.FlightViewModel
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +31,7 @@ import dagger.hilt.android.AndroidEntryPoint
 //Round Trip Fragment
 class PastTicketListFragment : Fragment() {
     private lateinit var binding : FragmentPastTicketListBinding
-    private lateinit var flightVM : FlightViewModel
+    private lateinit var ticketViewModel: TicketViewModel
     private lateinit var sharedPrefs : SharedPreferences
     lateinit var ticketVM : TicketViewModel
     private var listTicket : ArrayList<DataTicket?> = ArrayList()
@@ -49,7 +48,7 @@ class PastTicketListFragment : Fragment() {
         sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
         binding = FragmentPastTicketListBinding.inflate(inflater, container, false)
         ticketVM = ViewModelProvider(this).get(TicketViewModel::class.java)
-        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
+        ticketViewModel = ViewModelProvider(requireActivity()).get(TicketViewModel::class.java)
         return binding.root
     }
 
@@ -97,7 +96,7 @@ class PastTicketListFragment : Fragment() {
 
     private fun getListTicket() {
         showLoading(true)
-        flightVM.callGetAllTicket("false", "roundtrip").observe(viewLifecycleOwner) {
+        ticketVM.callGetAllTicket("false", "roundtrip").observe(viewLifecycleOwner) {
             if (it != null) {
 //                if(listTicket.size != totalItems || listTicket.size == 0) listTicket.addAll(it.tickets) else showLoading(false)
 //                Log.e("PAGINATION", "List Size : ${listTicket.size}")

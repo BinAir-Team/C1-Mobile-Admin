@@ -12,6 +12,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class TicketRepository @Inject constructor(var apiService: APIService) {
+    private val _allTicket = MutableLiveData<DataPageTicket?>()
+    val allTicket : LiveData<DataPageTicket?> = _allTicket
     private val _addTicket = MutableLiveData<AddTicketResponse?>()
     val addticket : LiveData<AddTicketResponse?> = _addTicket
     private val _updateTicket = MutableLiveData<UpdateTicketResponse?>()
@@ -20,6 +22,32 @@ class TicketRepository @Inject constructor(var apiService: APIService) {
     val deleteticket : LiveData<DeleteTicketResponse?> = _deleteTicket
     private val _allCityAirport = MutableLiveData<List<CityAirport>?>()
     val allCityAirport: LiveData<List<CityAirport>?> = _allCityAirport
+
+    fun callGetAllTicket(willFly : String,type : String) : LiveData<DataPageTicket?> {
+        apiService.getAllTicket(willFly, type).enqueue(object : Callback<GetTiketResponse>{
+            override fun onResponse(
+                call: Call<GetTiketResponse>,
+                response: Response<GetTiketResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        _allTicket.postValue(result.data)
+                        Log.d("RESULT", "Result : $result")
+                    }else{
+                        _allTicket.postValue(null)
+                    }
+                }else{
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<GetTiketResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+        })
+        return allTicket
+    }
 
     fun addticket(dataTicket : TicketData, token : String) : LiveData<AddTicketResponse?>{
         apiService.addTicket(dataTicket, token).enqueue(object :Callback<AddTicketResponse>{

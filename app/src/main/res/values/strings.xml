@@ -94,4 +94,9 @@
     <string name="ex_tgl_selesai">27/12/2022</string>
     <string name="tipe_penerbangan">Tipe Penerbangan</string>
     <string name="sekali_jalan">Sekali Jalan</string>
+    <string name="profil">profil</string>
+    <string name="profil_pengguna">Profile Pengguna</string>
+    <string name="riwayat_transaksi">Riwayat Transaksi</string>
+    <string name="id_ticket">id Ticket :</string>
+    <string name="list_transaction">List Transaksi</string>
 </resources>

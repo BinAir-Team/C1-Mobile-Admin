@@ -10,6 +10,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TicketViewModel @Inject constructor(private var ticketRepo : TicketRepository) : ViewModel(){
+    fun callGetAllTicket(willFly : String, type : String) : LiveData<DataPageTicket?> = ticketRepo.callGetAllTicket(willFly,type)
+
     fun addticket(dataticket : TicketData , Auth :  String): LiveData<AddTicketResponse?> = ticketRepo.addticket(dataticket,Auth)
 
     fun updateticket(id :String, dataticket : TicketData , Auth :  String): LiveData<UpdateTicketResponse?> = ticketRepo.updateticket(id, dataticket,Auth)

@@ -26,7 +26,6 @@ import binar.finalproject.binair.admin.databinding.FragmentTicketListBinding
 import binar.finalproject.binair.admin.databinding.ReviewDeleteTicketBinding
 import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.ui.adapter.ListTicketAdapter
-import binar.finalproject.binair.admin.viewmodel.FlightViewModel
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,7 +34,6 @@ import dagger.hilt.android.AndroidEntryPoint
 //Oneway Fragment
 class TicketListFragment : Fragment() {
     private lateinit var binding : FragmentTicketListBinding
-    private lateinit var flightVM : FlightViewModel
     private lateinit var sharedPrefs : SharedPreferences
     lateinit var ticketVM : TicketViewModel
     private var listTicket : ArrayList<DataTicket?> = ArrayList()
@@ -52,7 +50,6 @@ class TicketListFragment : Fragment() {
         sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
         binding = FragmentTicketListBinding.inflate(inflater, container, false)
         ticketVM = ViewModelProvider(this).get(TicketViewModel::class.java)
-        flightVM = ViewModelProvider(requireActivity()).get(FlightViewModel::class.java)
         adapter = ListTicketAdapter(listTicket)
         return binding.root
     }
@@ -102,7 +99,7 @@ class TicketListFragment : Fragment() {
 
     private fun getListTicket() {
         showLoading(true)
-        flightVM.callGetAllTicket("false", "oneway").observe(viewLifecycleOwner) {
+        ticketVM.callGetAllTicket("false", "oneway").observe(viewLifecycleOwner) {
             if (it != null) {
 //                if(listTicket.size != totalItems || listTicket.size == 0) listTicket.addAll(it.tickets) else showLoading(false)
 //                Log.e("PAGINATION", "List Size : ${listTicket.size}")

@@ -1,6 +1,8 @@
 package binar.finalproject.binair.admin.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,23 +10,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.IdRes
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant
+import binar.finalproject.binair.admin.data.response.DataGetAllTransaction
+import binar.finalproject.binair.admin.data.response.GetAllTransaction
+import binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction
 import binar.finalproject.binair.admin.databinding.FragmentProfileBinding
+import binar.finalproject.binair.admin.ui.adapter.ListTicketAdapter
+import binar.finalproject.binair.admin.ui.adapter.TransactionAdapter
+import binar.finalproject.binair.admin.viewmodel.TicketViewModel
+import binar.finalproject.binair.admin.viewmodel.TransactionViewModel
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@RequiresApi(Build.VERSION_CODES.O)
 class ProfileFragment : Fragment() {
     private lateinit var binding : FragmentProfileBinding
     private lateinit var sharedPrefs : SharedPreferences
     private lateinit var editor : SharedPreferences.Editor
     lateinit var userVM : UserViewModel
+    private lateinit var adapter : TransactionAdapter
+    lateinit var transactionVM : TransactionViewModel
+    private lateinit var layoutmanager : RecyclerView.LayoutManager
 
+    private var currentPage : Int = 0
+    private var totalPage : Int = 0
+    private var totalItems : Int = 0
+
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,6 +54,7 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
+        transactionVM = ViewModelProvider(this).get(TransactionViewModel::class.java)
         editor = sharedPrefs.edit()
         return binding.root
     }
@@ -43,16 +66,17 @@ class ProfileFragment : Fragment() {
     val token : String = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxZDM3MGVlLTBkNDItNDY2Yy04OGEyLTg5MmFkYmQ1ODRkYyIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJwaG9uZSI6bnVsbCwicm9sZSI6ImFkbWluIiwicHJvZmlsZV9pbWFnZSI6bnVsbCwiaWF0IjoxNjcwMzI5Mzg5LCJleHAiOjE2NzAzMzI5ODl9.-IkpQc9J8B9q8uiJwmiOIGYdYPzMvPyTnXuNQCockt8"
     private fun setListener() {
 
-        binding.apply {
-            logoutbutton.setOnClickListener{
-
-                editor.putString("token", null)
-                editor.putString("namaLengkap", null)
-                editor.putBoolean("isLogin", false)
-                editor.apply()
-                gotologin()
-            }
-        }
+        gettransaction()
+//        binding.apply {
+//            logoutbutton.setOnClickListener{
+//
+//                editor.putString("token", null)
+//                editor.putString("namaLengkap", null)
+//                editor.putBoolean("isLogin", false)
+//                editor.apply()
+//                gotologin()
+//            }
+//        }
     }
 
     private fun gotologin(){
@@ -73,5 +97,38 @@ class ProfileFragment : Fragment() {
 
     fun Int?.orEmpty(default: Int = 0): Int {
         return this ?: default
+    }
+    private fun gettransaction(){
+        val token = "Bearer " + sharedPrefs.getString("token","tokenisnull")
+        showLoading(true)
+        transactionVM.callGetAllTransaction(token).observe(viewLifecycleOwner){
+            if(it != null){
+                currentPage = it.currentPage!!
+                totalPage = it.totalPages!!
+                totalItems = it.totalItems!!
+                setDataToRecView(it.transactions as List<TransactionGetAllTransaction>)
+                showLoading(false)
+            }
+        }
+
+    }
+    private fun showLoading(condition : Boolean) {
+        if (condition) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun setDataToRecView(it : List<TransactionGetAllTransaction>){
+        adapter = TransactionAdapter(it)
+        layoutmanager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvTransactionList.adapter = adapter
+        binding.rvTransactionList.layoutManager = layoutmanager
+
+        adapter.onClick = {
+            val action = ProfileFragmentDirections.actionProfileFragmentToDetailTransactionFragment(it)
+            findNavController().navigate(action)
+        }
     }
 }

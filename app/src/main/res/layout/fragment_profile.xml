@@ -3,180 +3,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:context=".ui.fragment.EditProfileFragment"
         android:orientation="vertical">
-            <LinearLayout
-            android:paddingBottom="24dp"
-            android:orientation="vertical"
-            android:background="@drawable/profile_background"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@color/MC_Blue">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/backButton"
+                android:layout_width="7dp"
+                android:layout_height="12.23dp"
+                android:src="@drawable/left_arrow" />
+
+            <TextView
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profil"
+                android:textColor="@color/MBC_HighlightBase"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@id/backButton" />
+        </RelativeLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <include
-                    android:id="@+id/toolbar"
-                    layout="@layout/toolbar_home"
-                    />
             <RelativeLayout
-                android:id="@+id/CTAProfile"
-                android:layout_marginTop="17.76dp"
-                android:layout_marginHorizontal="23dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
                 <ImageView
-                    android:id="@+id/userprofile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/profile"/>
+                    android:layout_width="428dp"
+                    android:layout_height="296dp"
+                    android:src="@drawable/profile_headerbg" />
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:layout_marginLeft="25dp"
-                    android:layout_toRightOf="@id/userprofile">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="17dp"
+                    android:paddingHorizontal="22dp">
+
+                    <RelativeLayout
+                        android:id="@+id/CTAProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="23dp"
+                        android:layout_marginTop="17.76dp">
+
+                        <ImageView
+                            android:id="@+id/userprofile"
+                            android:src="@drawable/profile"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="25dp"
+                            android:layout_toEndOf="@id/userprofile"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/Name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/poppins_medium"
+                                android:text="Admin BinAir"
+                                android:textColor="@color/white"
+                                android:textSize="18sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:background="@drawable/profile_userlabelbackground"
+                                android:paddingHorizontal="9dp"
+                                android:paddingVertical="2dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins_regular"
+                                    android:text="Admin Role"
+                                    android:textColor="@color/white"
+                                    android:textSize="9sp"
+                                    tools:ignore="SmallSp" />
+
+                                <ImageView
+                                    android:layout_width="5.52dp"
+                                    android:layout_height="7dp"
+                                    android:layout_marginStart="24dp"
+                                    android:layout_marginTop="4dp"
+                                    android:src="@drawable/rightarrow" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
                     <TextView
                         android:id="@+id/tvName"
+                        android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Danial Farros Maulana"
+                        android:text=""
+                        android:textSize="18sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:textSize="18dp" />
+                        android:textColor="@color/SB_Base" />
+
                     <LinearLayout
-                        android:layout_marginTop="4dp"
-                        android:layout_width="wrap_content"
+                        android:paddingBottom="300dp"
+                        android:id="@+id/list"
+                        android:paddingVertical="10dp"
+                        android:paddingHorizontal="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingVertical="2dp"
-                        android:paddingHorizontal="9dp"
-                        android:background="@drawable/profile_userlabelbackground"
-                        >
+                        android:background="@drawable/profile_cardbackground"
+                        android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingRight="24dp"
-                            android:text="Admin"
-                            android:fontFamily="@font/poppins_regular"
-                            android:textSize="9dp"
-                            android:textColor="@color/white"/>
+                            android:text="@string/riwayat_transaksi"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textColor="@color/MBC_FontFill" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvTransactionList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_above="@id/pbRecView" />
+                        <com.github.ybq.android.spinkit.SpinKitView
+                            android:id="@+id/progressBar"
+                            style="@style/SpinKitView.Large.ThreeBounce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="100dp"
+                            android:layout_marginBottom="100dp"
+                            android:visibility="gone"
+                            android:layout_centerInParent="true"
+                            app:SpinKit_Color="@color/main_blue" />
                     </LinearLayout>
                 </LinearLayout>
+
             </RelativeLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginHorizontal="9dp"
-            android:paddingVertical="10dp"
-            android:paddingHorizontal="15dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/profile_background"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="User Profile"
-                android:textSize="18dp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/MBC_FontFill"/>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textStyle="bold"
-                    android:textColor="@color/C5"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Danial Farros Maulana"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="14dp"
-                    android:textColor="@color/C2"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textStyle="bold"
-                    android:textColor="@color/C5"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="danialfarrosmaulana921@gmail.com"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="14dp"
-                    android:textColor="@color/C2"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone Number"
-                    android:textStyle="bold"
-                    android:textColor="@color/C5"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="+6285859600019"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="14dp"
-                    android:textColor="@color/C2"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textStyle="bold"
-                    android:textColor="@color/C5"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:textSize="11dp"/>
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Melirang Wetan Rt.01 Rw.01 Bungah Gresik"
-                    android:fontFamily="@font/poppins_regular"
-                    android:textSize="14dp"
-                    android:textColor="@color/C2"
-                    />
-            </LinearLayout>
-            <Button
-                android:id="@+id/logoutbutton"
-                style="@style/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/log_out"
-                android:fontFamily="@font/poppins_medium"
-                android:textSize="16dp"/>
-        </LinearLayout>
+        </ScrollView>
+
+
     </LinearLayout>
+
 
 </FrameLayout>

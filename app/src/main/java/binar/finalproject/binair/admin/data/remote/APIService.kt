@@ -34,4 +34,7 @@ interface APIService {
 
     @DELETE("tickets/{id}")
     fun deleteTicket(@Path("id") id : String, @Header("Authorization") Auth: String) : Call<DeleteTicketResponse>
+
+    @GET("admin/trans")
+    fun getAllTransaction(@Header("Authorization") Auth :  String) : Call<GetAllTransaction>
 }
