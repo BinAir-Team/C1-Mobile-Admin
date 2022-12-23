@@ -15,6 +15,7 @@ import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant
 import binar.finalproject.binair.admin.data.Constant.initApp
 import binar.finalproject.binair.admin.databinding.FragmentSplashScreenBinding
+import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,12 +47,14 @@ class SplashScreenFragment : Fragment() {
                 editor.putBoolean("firstRun", false)
                 editor.apply()
                 findNavController().navigate(R.id.action_splashScreenFragment_to_carouselFragment)
-            }else if (prefsUser.getString("token",null) != null && checkToken()) {
-                findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment2)
-            }else{
-                findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
             }
+            checkToken()
         },500)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).binding.bottomNavContainer.visibility = View.GONE
     }
 
     private fun checkToken() : Boolean{
@@ -63,6 +66,9 @@ class SplashScreenFragment : Fragment() {
             userVM.getUser("Bearer $token").observe(viewLifecycleOwner) {
                 if (it != null) {
                     result = true
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_homeFragment2)
+                }else{
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
                 }
             }
         }

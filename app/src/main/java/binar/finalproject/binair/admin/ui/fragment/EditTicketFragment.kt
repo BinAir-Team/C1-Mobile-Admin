@@ -3,9 +3,11 @@ package binar.finalproject.binair.admin.ui.fragment
 import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.math.min
 
 @AndroidEntryPoint
 @RequiresApi(Build.VERSION_CODES.O)
@@ -38,10 +41,10 @@ class EditTicketFragment : Fragment() {
     private val calendar = Calendar.getInstance()
     lateinit var ticketVM : TicketViewModel
     private lateinit var sharedPrefs : SharedPreferences
-    private lateinit var cityFrom : String
-    private lateinit var airportFrom : String
-    private lateinit var cityTo : String
-    private lateinit var airportTo : String
+    private var cityFrom : String = ""
+    private var airportFrom : String = ""
+    private var cityTo : String = ""
+    private var airportTo : String = ""
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -68,57 +71,69 @@ class EditTicketFragment : Fragment() {
                 saveedit()
             }
             etTglBerangkatInput.setOnClickListener {
-                showDatePickerDialog("berangkat")
+                showDatePickerDialog("berangkat",clickedTicket.dateStart)
             }
             etTglBerangkatInput.setOnFocusChangeListener { view, b ->
                 if (b) {
-                    showDatePickerDialog("berangkat")
+                    showDatePickerDialog("berangkat",clickedTicket.dateStart)
                 }
             }
             etTglSelesaiInput.setOnClickListener {
-                showDatePickerDialog("selesai")
+                showDatePickerDialog("selesai",clickedTicket.dateStart)
             }
             etTglSelesaiInput.setOnFocusChangeListener { view, b ->
                 if (b) {
-                    showDatePickerDialog("selesai")
+                    showDatePickerDialog("selesai",clickedTicket.dateStart)
                 }
             }
             etJamBerangkatInput.setOnClickListener{
-                showTimePickerDialog("keberangkatan")
+                showTimePickerDialog("keberangkatan",clickedTicket.departureTime)
             }
             etJamBerangkatInput.setOnFocusChangeListener { view, b ->
                 if (b) {
-                    showTimePickerDialog("keberangkatan")
+                    showTimePickerDialog("keberangkatan",clickedTicket.departureTime)
                 }
             }
             etJamKedatanganInput.setOnClickListener{
-                showTimePickerDialog("kepulangan")
+                showTimePickerDialog("kepulangan",clickedTicket.arrivalTime)
             }
             etJamKedatanganInput.setOnFocusChangeListener { view, b ->
                 if (b) {
-                    showTimePickerDialog("kepulangan")
+                    showTimePickerDialog("kepulangan",clickedTicket.arrivalTime)
                 }
             }
         }
     }
 
-    private fun showTimePickerDialog(kategori: String){
-        val timePicker: MaterialTimePicker = MaterialTimePicker
-            .Builder()
-            .setTimeFormat(TimeFormat.CLOCK_24H)
-            .setTitleText("Pilih Waktu")
-            .setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .build()
-
-        fragmentManager?.let { timePicker.show(it, "TIME_PICKER") }
-
-        timePicker.addOnPositiveButtonClickListener {
-            val time = timePicker.hour.toString() + ":" + timePicker.minute.toString()
-            updateTime(kategori, time)
+    @SuppressLint("SimpleDateFormat")
+    private fun showTimePickerDialog(kategori: String, jam : String){
+        try {
+            val time = SimpleDateFormat("hh:mm").parse(jam)
+            val hour = time?.hours
+            val minute = time?.minutes
+            if(hour != null && minute != null){
+                val timePicker = TimePickerDialog(requireContext(), { view, hourOfDay, minute ->
+                    val time = hourOfDay.toString() + ":" + if(minute.toString() == "0") "00" else(minute.toString())
+                    updateTime(kategori, time)
+                }, hour, minute, true)
+                timePicker.show()
+            }
+        }catch (e: Exception){
+            e.printStackTrace()
+            val timePicker = TimePickerDialog(requireContext(), { view, hourOfDay, minute ->
+                val time = hourOfDay.toString() + ":" + if(minute.toString() == "0") "00" else(minute.toString())
+                updateTime(kategori, time)
+            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
+            timePicker.show()
         }
     }
 
-    private fun showDatePickerDialog(kategori: String) {
+    private fun showDatePickerDialog(kategori: String, date : String) {
+        val dt = formatDateToAPI(date).split("-")
+//        calendar.set(Integer.valueOf(dt.get(0)),Integer.valueOf(dt.get(1)),Integer.valueOf(dt.get(2)))
+//        Log.e("date", "${calendar.get(Calendar.YEAR)}")
+//        Log.e("date", "${calendar.get(Calendar.MONTH)}")
+//        Log.e("date", "${calendar.get(Calendar.DAY_OF_MONTH)}")
         val datePicker =
             DatePickerDialog.OnDateSetListener { view, year, month, day ->
                 calendar.set(Calendar.YEAR, year)
@@ -126,8 +141,8 @@ class EditTicketFragment : Fragment() {
                 calendar.set(Calendar.DAY_OF_MONTH, day)
                 updateLabel(kategori, calendar.time)
             }
-        DatePickerDialog(requireActivity(),datePicker,calendar.get(Calendar.YEAR),calendar.get(
-            Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+//        DatePickerDialog(requireActivity(),datePicker,)).show();
+        DatePickerDialog(requireActivity(),datePicker,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -175,8 +190,8 @@ class EditTicketFragment : Fragment() {
     }
 
     private fun formatDate(date : Date) : String {
-        val myFormat = "dd/MM/yyyy"
-        val dateFormat = SimpleDateFormat(myFormat)
+        val myFormat = "EEEE, dd MMM yy"
+        val dateFormat = SimpleDateFormat(myFormat, Locale("id", "ID"))
         return dateFormat.format(date)
     }
 
@@ -205,16 +220,16 @@ class EditTicketFragment : Fragment() {
 
     private fun setDataToView() {
         val oldDateStart = clickedTicket.dateStart
-        val formatedDateStart = formatDate(oldDateStart)
+        val formatedDateStart = formatDateFrString(oldDateStart)
         clickedTicket.dateStart = formatedDateStart
 
         val oldDateEnd = clickedTicket.dateEnd
-        val formatedDateEnd = oldDateEnd?.let { formatDate(it) }
+        val formatedDateEnd = oldDateEnd?.let { formatDateFrString(it) }
         clickedTicket.dateEnd = formatedDateEnd
         binding.ticket = clickedTicket
     }
 
-    fun formatDate(date : String) : String {
+    fun formatDateFrString(date : String) : String {
         try {
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val localDate = LocalDate.parse(date, formatter)
@@ -225,23 +240,36 @@ class EditTicketFragment : Fragment() {
         }
     }
 
+    fun formatDateToAPI(date: String) : String{
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy",Locale("id", "ID"))).toString()
+    }
+
     private fun saveedit(){
-        val asalKota = binding.etFrom.text.toString()
-        val destinasi = binding.etDestination.text.toString()
+        if (cityFrom == "" || cityTo == "" || airportFrom == "" || airportTo == "") {
+            cityFrom = clickedTicket.from
+            cityTo = clickedTicket.to
+            airportFrom = clickedTicket.airportFrom
+            airportTo = clickedTicket.airportTo
+        }
         val tanggalBerangkat = binding.etTglBerangkatInput.text.toString()
-        val tanggalSelesai = binding.etTglSelesaiInput.text.toString()
-        val jamBerangkat = binding.etJamBerangkatInput.text.toString()
-        val jamKedatangan = binding.etJamKedatanganInput.text.toString()
+        var tanggalSelesai : String? = binding.etTglSelesaiInput.text.toString()
+        val jamBerangkat = formatDateToAPI(binding.etJamBerangkatInput.text.toString())
+        val jamKedatangan = formatDateToAPI(binding.etJamKedatanganInput.text.toString())
+        var tipe = binding.etTipe.text.toString()
         val adultPrice = binding.etAdultPrice.text.toString().toInt()
         val childPrice = binding.etChildPrice.text.toString().toInt()
         val initialStock = binding.etJmlPenumpangInput.text.toString().toInt()
 
-        val formatedDateBerangkat = tanggalBerangkat.substring(6, 10) + "-" + tanggalBerangkat.substring(3, 5) + "-" + tanggalBerangkat.substring(0, 2)
-        val formatedDateSelesai = tanggalSelesai.substring(6, 10) + "-" + tanggalSelesai.substring(3, 5) + "-" + tanggalSelesai.substring(0, 2)
+        if(tipe == "Sekali Jalan"){
+            tipe = "oneway"
+            tanggalSelesai = null
+        }else{
+            tipe = "roundtrip"
+        }
 
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
         val ticketdata = TicketData(cityFrom,airportFrom,cityTo,airportTo,
-            formatedDateBerangkat,formatedDateSelesai,jamBerangkat,jamKedatangan, "sekali jalan",
+            tanggalBerangkat,tanggalSelesai,jamBerangkat,jamKedatangan, tipe,
             adultPrice,childPrice, Boolean.TRUE, initialStock, initialStock )
 
         ticketVM.updateticket(clickedTicket.id, ticketdata,token).observe(viewLifecycleOwner){

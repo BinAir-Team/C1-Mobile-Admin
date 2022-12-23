@@ -152,7 +152,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun showTimePickerDialog(kategori: String){
-
         val timePicker = TimePickerDialog(requireContext(), { view, hourOfDay, minute ->
             val time = hourOfDay.toString() + ":" + if(minute.toString() == "0") "00" else(minute.toString())
             updateTime(kategori, time)
