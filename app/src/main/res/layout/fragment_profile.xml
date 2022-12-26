@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ProfileFragment">
+    tools:context=".ui.fragment.ProfileFragment"
+    tools:ignore="ContentDescription, UselessParent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +83,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="Admin BinAir"
+                                android:text="@string/admin_binair"
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
 
@@ -97,7 +99,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:text="Admin Role"
+                                    android:text="@string/admin_role"
                                     android:textColor="@color/white"
                                     android:textSize="9sp"
                                     tools:ignore="SmallSp" />
@@ -143,8 +145,7 @@
                             android:id="@+id/rvTransactionList"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_above="@id/pbRecView" />
+                            android:layout_marginTop="10dp" />
                         <com.github.ybq.android.spinkit.SpinKitView
                             android:id="@+id/progressBar"
                             style="@style/SpinKitView.Large.ThreeBounce"
@@ -154,7 +155,6 @@
                             android:layout_marginTop="100dp"
                             android:layout_marginBottom="100dp"
                             android:visibility="gone"
-                            android:layout_centerInParent="true"
                             app:SpinKit_Color="@color/main_blue" />
                     </LinearLayout>
                 </LinearLayout>

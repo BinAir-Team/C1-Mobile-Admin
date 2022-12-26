@@ -1,5 +1,6 @@
 package binar.finalproject.binair.admin.ui.fragment
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -19,6 +20,7 @@ import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
+@SuppressLint("CustomSplashScreen")
 @AndroidEntryPoint
 class SplashScreenFragment : Fragment() {
     private lateinit var binding : FragmentSplashScreenBinding

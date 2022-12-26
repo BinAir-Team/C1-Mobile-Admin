@@ -4,7 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.HomeFragment">
+    tools:context=".ui.fragment.HomeFragment"
+    tools:ignore="
+            ContentDescription,Deprecated,
+            RtlHardcoded,TooDeepLayout,
+            RtlSymmetry,
+            ObsoleteLayoutParam,
+            UselessParent,
+            HardcodedText">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
-            android:paddingBottom="16dp"
+            android:paddingBottom="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingTop="20dp"
+            android:paddingTop="20sp"
             >
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,10 +39,10 @@
                     android:id="@+id/cvSearchContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="24dp"
-                    app:cardCornerRadius="16dp"
+                    android:layout_marginStart="24sp"
+                    android:layout_marginTop="32sp"
+                    android:layout_marginEnd="24sp"
+                    app:cardCornerRadius="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="MissingConstraints">
@@ -44,7 +51,7 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="16dp"
+                        android:padding="16sp"
                         android:weightSum="2">
 
                         <TextView
@@ -52,7 +59,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_tambah_penerbangan"
-                            android:textSize="18dp"
+                            android:textSize="18sp"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_medium"
                             />
@@ -61,14 +68,14 @@
                             android:id="@+id/fromInputContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:hint="@string/label_dari"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey">
 
@@ -76,10 +83,10 @@
                                 android:id="@+id/etFrom"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="16sp"
                                 android:drawableStart="@drawable/home_airplanetakeoff"
-                                android:drawablePadding="8dp"
-                                android:padding="12dp"
+                                android:drawablePadding="8sp"
+                                android:padding="12sp"
                                 android:text="@string/ex_kota_dari" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,14 +94,14 @@
                             android:id="@+id/destinationInputContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:hint="@string/label_destinasi"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey">
 
@@ -102,10 +109,10 @@
                                 android:id="@+id/etDestination"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="16sp"
                                 android:drawableStart="@drawable/home_airplanelanding"
-                                android:drawablePadding="8dp"
-                                android:padding="12dp"
+                                android:drawablePadding="8sp"
+                                android:padding="12sp"
                                 android:text="@string/ex_kota_tujuan" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -113,14 +120,14 @@
                             android:id="@+id/tipePenerbangan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:hint="@string/tipe_penerbangan"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey"
                             style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -129,10 +136,10 @@
                                 android:id="@+id/etTipe"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="16sp"
                                 android:drawableStart="@drawable/home_airplanelanding"
-                                android:drawablePadding="8dp"
-                                android:padding="12dp"
+                                android:drawablePadding="8sp"
+                                android:padding="12sp"
                                 android:text="@string/sekali_jalan" />
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,14 +147,14 @@
                             android:id="@+id/tglBerangkatInputContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:hint="@string/label_tanggal_berangkat"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey">
 
@@ -156,7 +163,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableStart="@drawable/home_schedule"
-                                android:drawablePadding="8dp"
+                                android:drawablePadding="8sp"
                                 android:inputType="none"
                                 android:text="@string/ex_tgl_brkt"
                                 android:editable="false"/>
@@ -165,14 +172,14 @@
                             android:id="@+id/tglSelesaiInputContainer"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:hint="@string/label_tanggal_Selesai"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey"
                             android:visibility="gone">
@@ -182,7 +189,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:drawableStart="@drawable/home_schedule"
-                                android:drawablePadding="8dp"
+                                android:drawablePadding="8sp"
                                 android:inputType="none"
                                 android:text="@string/ex_tgl_selesai"
                                 android:editable="false"/>
@@ -194,21 +201,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal"
-                            android:weightSum="2">
+                            android:weightSum="2"
+                            android:baselineAligned="false">
                             <com.google.android.material.textfield.TextInputLayout
-                                android:layout_marginRight="5dp"
+                                android:layout_marginRight="5sp"
                                 android:layout_weight="1"
                                 android:id="@+id/jamBerangkatInputContainer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="16sp"
                                 android:hint="@string/label_jam_berangkat"
                                 android:textColorHint="@color/black"
                                 app:boxBackgroundColor="@color/white"
-                                app:boxCornerRadiusBottomEnd="12dp"
-                                app:boxCornerRadiusBottomStart="12dp"
-                                app:boxCornerRadiusTopEnd="12dp"
-                                app:boxCornerRadiusTopStart="12dp"
+                                app:boxCornerRadiusBottomEnd="12sp"
+                                app:boxCornerRadiusBottomStart="12sp"
+                                app:boxCornerRadiusTopEnd="12sp"
+                                app:boxCornerRadiusTopStart="12sp"
                                 app:boxStrokeColor="@color/content_grey"
                                 app:hintTextColor="@color/content_grey">
 
@@ -217,7 +225,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/home_schedule"
-                                    android:drawablePadding="8dp"
+                                    android:drawablePadding="8sp"
                                     android:editable="false"
                                     android:inputType="none"
                                     android:text="17:00" />
@@ -226,18 +234,18 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_weight="1"
-                                android:layout_marginLeft="5dp"
+                                android:layout_marginLeft="5sp"
                                 android:id="@+id/jamKedatanganInputContainer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
+                                android:layout_marginTop="16sp"
                                 android:hint="@string/label_jam_datang"
                                 android:textColorHint="@color/black"
                                 app:boxBackgroundColor="@color/white"
-                                app:boxCornerRadiusBottomEnd="12dp"
-                                app:boxCornerRadiusBottomStart="12dp"
-                                app:boxCornerRadiusTopEnd="12dp"
-                                app:boxCornerRadiusTopStart="12dp"
+                                app:boxCornerRadiusBottomEnd="12sp"
+                                app:boxCornerRadiusBottomStart="12sp"
+                                app:boxCornerRadiusTopEnd="12sp"
+                                app:boxCornerRadiusTopStart="12sp"
                                 app:boxStrokeColor="@color/content_grey"
                                 app:hintTextColor="@color/content_grey">
 
@@ -246,7 +254,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:drawableStart="@drawable/home_schedule"
-                                    android:drawablePadding="8dp"
+                                    android:drawablePadding="8sp"
                                     android:editable="false"
                                     android:inputType="none"
                                     android:text="19:00" />
@@ -259,15 +267,15 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:layout_weight="1"
                             android:hint="@string/label_hargaDewasa"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey">
 
@@ -282,15 +290,15 @@
                         <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:layout_weight="1"
                             android:hint="@string/label_hargaAnakAnak"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey">
 
@@ -306,15 +314,15 @@
                             android:id="@+id/jmlKapasitasContainer"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:layout_weight="1"
                             android:hint="@string/label_Kapasitas"
                             android:textColorHint="@color/black"
                             app:boxBackgroundColor="@color/white"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxCornerRadiusBottomEnd="12sp"
+                            app:boxCornerRadiusBottomStart="12sp"
+                            app:boxCornerRadiusTopEnd="12sp"
+                            app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey">
 
@@ -330,7 +338,7 @@
                             style="@style/button"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:text="@string/btn_tambah_penerbangan" />
 
                     </LinearLayout>

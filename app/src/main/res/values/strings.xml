@@ -99,4 +99,14 @@
     <string name="riwayat_transaksi">Riwayat Transaksi</string>
     <string name="id_ticket">id Ticket :</string>
     <string name="list_transaction">List Transaksi</string>
+    <string name="flight_number">Flight Number :</string>
+    <string name="flight_plane_number">PK 625</string>
+    <string name="none">-</string>
+    <string name="benefits">Benefits :</string>
+    <string name="admin_binair">Admin BinAir</string>
+    <string name="admin_role">Admin Role</string>
+    <string name="price">Harga :</string>
+    <string name="add_ticket">Add Ticket</string>
+    <string name="ticket_list">Ticket List</string>
+    <string name="add_notification">Add Notification</string>
 </resources>
