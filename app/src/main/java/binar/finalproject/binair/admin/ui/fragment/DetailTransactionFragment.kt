@@ -10,15 +10,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import binar.finalproject.binair.admin.R
-import binar.finalproject.binair.admin.data.response.DataTicket
-import binar.finalproject.binair.admin.data.response.GetAllTransaction
 import binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction
 import binar.finalproject.binair.admin.data.response.TravelerGetAllTransaction
 import binar.finalproject.binair.admin.databinding.FragmentDetailTransactionBinding
-import binar.finalproject.binair.admin.databinding.FragmentTicketDetailsBinding
 import binar.finalproject.binair.admin.ui.adapter.PassangerAdapter
-import binar.finalproject.binair.admin.ui.adapter.TransactionAdapter
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -34,7 +29,7 @@ class DetailTransactionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailTransactionBinding.inflate(inflater, container, false)// Inflate the layout for this fragment
         return binding.root
     }

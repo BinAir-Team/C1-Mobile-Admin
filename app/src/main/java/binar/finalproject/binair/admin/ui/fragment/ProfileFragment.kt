@@ -1,3 +1,5 @@
+@file:Suppress("RemoveRedundantQualifierName")
+
 package binar.finalproject.binair.admin.ui.fragment
 
 import android.annotation.SuppressLint
@@ -8,7 +10,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
@@ -17,16 +18,11 @@ import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant
-import binar.finalproject.binair.admin.data.response.DataGetAllTransaction
-import binar.finalproject.binair.admin.data.response.GetAllTransaction
 import binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction
 import binar.finalproject.binair.admin.databinding.FragmentProfileBinding
-import binar.finalproject.binair.admin.ui.adapter.ListTicketAdapter
 import binar.finalproject.binair.admin.ui.adapter.TransactionAdapter
-import binar.finalproject.binair.admin.viewmodel.TicketViewModel
 import binar.finalproject.binair.admin.viewmodel.TransactionViewModel
 import binar.finalproject.binair.admin.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +46,7 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater)
         userVM = ViewModelProvider(this).get(UserViewModel::class.java)
         sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
@@ -67,16 +63,6 @@ class ProfileFragment : Fragment() {
     private fun setListener() {
 
         gettransaction()
-//        binding.apply {
-//            logoutbutton.setOnClickListener{
-//
-//                editor.putString("token", null)
-//                editor.putString("namaLengkap", null)
-//                editor.putBoolean("isLogin", false)
-//                editor.apply()
-//                gotologin()
-//            }
-//        }
     }
 
     private fun gotologin(){

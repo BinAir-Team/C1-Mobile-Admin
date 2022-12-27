@@ -2,7 +2,6 @@ package binar.finalproject.binair.admin.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import binar.finalproject.binair.admin.data.TicketRepository
 import binar.finalproject.binair.admin.data.TransactionRepository
 import binar.finalproject.binair.admin.data.response.DataGetAllTransaction
 import dagger.hilt.android.lifecycle.HiltViewModel

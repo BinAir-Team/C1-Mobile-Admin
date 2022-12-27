@@ -55,7 +55,6 @@
                         android:weightSum="2">
 
                         <TextView
-                            android:id="@+id/tvSearchFlightTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_tambah_penerbangan"

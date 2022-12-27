@@ -1,7 +1,8 @@
+@file:Suppress("RemoveEmptyParenthesesFromLambdaCall", "RemoveEmptyParenthesesFromLambdaCall")
+
 package binar.finalproject.binair.admin.ui.fragment
 
 import android.annotation.SuppressLint
-import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,7 +27,7 @@ class TicketDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTicketDetailsBinding.inflate(inflater, container, false)// Inflate the layout for this fragment
         return binding.root
     }

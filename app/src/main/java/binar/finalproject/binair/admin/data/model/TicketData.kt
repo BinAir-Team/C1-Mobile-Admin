@@ -1,8 +1,5 @@
 package binar.finalproject.binair.admin.data.model
 
-import com.google.gson.annotations.SerializedName
-import java.util.Date
-
 data class TicketData(
     val from: String?,
     val airport_from: String,

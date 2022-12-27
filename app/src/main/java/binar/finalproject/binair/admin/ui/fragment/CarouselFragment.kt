@@ -1,3 +1,7 @@
+@file:Suppress("RedundantNullableReturnType", "RedundantSamConstructor", "RedundantSemicolon",
+    "RedundantSemicolon"
+)
+
 package binar.finalproject.binair.admin.ui.fragment
 
 
@@ -20,6 +24,7 @@ import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.ui.adapter.HeadlineViewPager
 import binar.finalproject.binair.admin.viewmodel.NewsViewModel
 
+@Suppress("RedundantSemicolon", "RedundantSemicolon")
 class CarouselFragment : Fragment() {
     private lateinit var binding : FragmentCarouselBinding
     private lateinit var newsVM : NewsViewModel

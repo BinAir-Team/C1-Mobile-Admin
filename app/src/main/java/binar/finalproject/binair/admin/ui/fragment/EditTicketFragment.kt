@@ -1,5 +1,8 @@
+@file:Suppress("RemoveEmptyParenthesesFromLambdaCall")
+
 package binar.finalproject.binair.admin.ui.fragment
 
+//noinspection SuspiciousImport
 import android.R
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -22,16 +25,13 @@ import binar.finalproject.binair.admin.data.response.DataTicket
 import binar.finalproject.binair.admin.databinding.FragmentEditTicketBinding
 import binar.finalproject.binair.admin.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Boolean
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.math.min
 
+@Suppress("DEPRECATION", "NAME_SHADOWING", "UNCHECKED_CAST")
 @AndroidEntryPoint
 @RequiresApi(Build.VERSION_CODES.O)
 class EditTicketFragment : Fragment() {
@@ -49,7 +49,7 @@ class EditTicketFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentEditTicketBinding.inflate(inflater, container, false)// Inflate the layout for this fragment
         sharedPrefs = requireActivity().getSharedPreferences(Constant.dataUser, 0)
@@ -128,11 +128,7 @@ class EditTicketFragment : Fragment() {
     }
 
     private fun showDatePickerDialog(kategori: String, date : String) {
-        val dt = formatDateToAPI(date).split("-")
-//        calendar.set(Integer.valueOf(dt.get(0)),Integer.valueOf(dt.get(1)),Integer.valueOf(dt.get(2)))
-//        Log.e("date", "${calendar.get(Calendar.YEAR)}")
-//        Log.e("date", "${calendar.get(Calendar.MONTH)}")
-//        Log.e("date", "${calendar.get(Calendar.DAY_OF_MONTH)}")
+        formatDateToAPI(date).split("-")
         val datePicker =
             DatePickerDialog.OnDateSetListener { view, year, month, day ->
                 calendar.set(Calendar.YEAR, year)
@@ -140,11 +136,10 @@ class EditTicketFragment : Fragment() {
                 calendar.set(Calendar.DAY_OF_MONTH, day)
                 updateLabel(kategori, calendar.time)
             }
-//        DatePickerDialog(requireActivity(),datePicker,)).show();
         DatePickerDialog(requireActivity(),datePicker,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show()
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     private fun setAutoCompleteData() {
         val dataTipe = arrayOf("Sekali Jalan", "Pulang Pergi")
         val adapterTipe = ArrayAdapter(requireContext(), R.layout.simple_list_item_1, dataTipe)
@@ -269,7 +264,7 @@ class EditTicketFragment : Fragment() {
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
         val ticketdata = TicketData(cityFrom,airportFrom,cityTo,airportTo,
             tanggalBerangkat,tanggalSelesai,jamBerangkat,jamKedatangan, tipe,
-            adultPrice,childPrice, Boolean.TRUE, initialStock, initialStock )
+            adultPrice,childPrice, true, initialStock, initialStock )
 
         ticketVM.updateticket(clickedTicket.id, ticketdata,token).observe(viewLifecycleOwner){
             if (it != null && it.status == "success") {

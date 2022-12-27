@@ -9,7 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_home"
@@ -20,8 +21,8 @@
             android:fillViewport="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingTop="20dp"
-            android:layout_marginHorizontal="23dp">
+            android:paddingTop="20sp"
+            android:layout_marginHorizontal="23sp">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -30,12 +31,12 @@
                     android:id="@+id/cvSearchContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
-                    app:cardCornerRadius="16dp"
-                    app:contentPaddingTop="8dp"
-                    app:contentPaddingBottom="8dp"
-                    app:contentPaddingLeft="16dp"
-                    app:contentPaddingRight="16dp"
+                    android:layout_margin="2sp"
+                    app:cardCornerRadius="16sp"
+                    app:contentPaddingTop="8sp"
+                    app:contentPaddingBottom="8sp"
+                    app:contentPaddingLeft="16sp"
+                    app:contentPaddingRight="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:ignore="MissingConstraints">
@@ -44,45 +45,43 @@
                         android:layout_height="wrap_content"
                         android:text="@string/broadcast_notifikasi"
                         android:fontFamily="@font/poppins_medium"
-                        android:textSize="18dp"/>
+                        android:textSize="18sp"/>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/pesanBroadcastContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="36dp"
+                        android:layout_marginTop="36sp"
                         android:hint="@string/pesan_broadcast"
                         android:textColorHint="@color/black"
                         app:boxBackgroundColor="@color/white"
-                        app:boxCornerRadiusBottomEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusTopStart="12dp"
+                        app:boxCornerRadiusBottomEnd="12sp"
+                        app:boxCornerRadiusBottomStart="12sp"
+                        app:boxCornerRadiusTopEnd="12sp"
+                        app:boxCornerRadiusTopStart="12sp"
                         app:boxStrokeColor="@color/content_grey"
                         app:hintTextColor="@color/content_grey">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etPesanBroadcastInput"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableStart="@drawable/notification_broadcast"
-                            android:drawablePadding="0dp"
+                            android:drawablePadding="0sp"
                             android:inputType="none"
                             android:text="@string/boradcastnote"
                             android:fontFamily="@font/inter_medium"
-                            android:textSize="12dp"
+                            android:textSize="12sp"
                             android:textStyle="bold"/>
 
                         <Button
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="16sp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             style="@style/button"
                             android:backgroundTint="@color/orange"
-                            android:text="Bagikan Notifikasi"
+                            android:text="@string/bagikan_notifikasi"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_medium"
-                            android:textSize="18dp"/>
+                            android:textSize="18sp"/>
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>

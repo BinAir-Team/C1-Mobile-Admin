@@ -22,7 +22,6 @@
         android:layout_alignParentBottom="true"
         android:visibility="visible">
         <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:backgroundTint="#F3F6F9"
