@@ -71,4 +71,5 @@
     <string name="soekarno_hatta">Soekarno Hatta</string>
     <string name="label_past">Sudah Jalan</string>
     <string name="label_on_going">On Going</string>
+    <string name="delete_transactiion">Hapus Transakasi</string>
 </resources>

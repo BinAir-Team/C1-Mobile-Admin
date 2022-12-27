@@ -1,5 +1,6 @@
 package binar.finalproject.binair.admin.data.remote
 
+import androidx.room.Delete
 import binar.finalproject.binair.admin.data.model.DataRegister
 import binar.finalproject.binair.admin.data.model.TicketData
 import binar.finalproject.binair.admin.data.response.*
@@ -37,4 +38,7 @@ interface APIService {
 
     @GET("admin/trans")
     fun getAllTransaction(@Header("Authorization") Auth :  String) : Call<GetAllTransaction>
+
+    @DELETE("admin/trans/{id}")
+    fun deleteTransaction(@Header("Authorization") Auth :  String,@Path("id") id : String) : Call<DeleteTransactionResponse>
 }

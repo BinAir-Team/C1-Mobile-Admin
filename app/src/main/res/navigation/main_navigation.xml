@@ -116,5 +116,8 @@
         android:label="DetailTransactionFragment" >
         <argument android:name="transaction"
             app:argType="binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction" />
+        <action
+            android:id="@+id/action_detailTransactionFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
 </navigation>
