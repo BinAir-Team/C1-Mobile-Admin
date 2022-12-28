@@ -3,6 +3,7 @@
 package binar.finalproject.binair.admin.ui.fragment
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
@@ -61,13 +63,39 @@ class ProfileFragment : Fragment() {
     }
     val token : String = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxZDM3MGVlLTBkNDItNDY2Yy04OGEyLTg5MmFkYmQ1ODRkYyIsImZpcnN0bmFtZSI6bnVsbCwibGFzdG5hbWUiOm51bGwsImdlbmRlciI6bnVsbCwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJwaG9uZSI6bnVsbCwicm9sZSI6ImFkbWluIiwicHJvZmlsZV9pbWFnZSI6bnVsbCwiaWF0IjoxNjcwMzI5Mzg5LCJleHAiOjE2NzAzMzI5ODl9.-IkpQc9J8B9q8uiJwmiOIGYdYPzMvPyTnXuNQCockt8"
     private fun setListener() {
-
+        binding.apply {
+            btnLogout.setOnClickListener(){
+                logout()
+            }
+        }
         gettransaction()
     }
 
-    private fun gotologin(){
-        findNavController().navigateSafe(R.id.action_profileFragment_to_loginFragment)
-    }
+    private fun logout(){
+            val token = sharedPrefs.getString("token", null)
+            if(token != null){
+                val alert = AlertDialog.Builder(requireContext())
+                alert.apply {
+                    setTitle("Logout")
+                    setMessage("Apakah anda yakin ingin logout?")
+                    setPositiveButton("Ya") { dialog, _ ->
+                        Toast.makeText(requireContext(), "Logout Berhasil", Toast.LENGTH_SHORT).show()
+                        val editor = sharedPrefs.edit()
+                        editor.clear()
+                        editor.apply()
+                        findNavController().navigateSafe(R.id.action_profileFragment_to_loginFragment)
+                        dialog.dismiss()
+                    }
+                    setNegativeButton("Tidak") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                }
+                alert.create().show()
+            } else {
+                Toast.makeText(requireContext(), "Silahkan login terlebih dahulu", Toast.LENGTH_SHORT).show()
+            }
+        }
+
 
     fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {
         val destinationId = currentDestination?.getAction(resId)?.destinationId.orEmpty()

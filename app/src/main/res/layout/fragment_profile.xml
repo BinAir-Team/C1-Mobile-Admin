@@ -36,6 +36,26 @@
                 android:textColor="@color/MBC_HighlightBase"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/backButton" />
+                <LinearLayout
+                    android:id="@+id/btnLogout"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:backgroundTint="#00FFFFFF"
+                        android:rotation="180"
+                        android:src="@drawable/ic_baseline_logout_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:fontFamily="@font/inter_bold"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+                </LinearLayout>
         </RelativeLayout>
 
         <ScrollView
