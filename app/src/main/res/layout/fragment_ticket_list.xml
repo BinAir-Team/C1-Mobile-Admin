@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/label_on_going"
+                    android:text="@string/sekali_jalan"
                     android:textColor="@color/white"
                     android:textSize="12dp" />
             </androidx.cardview.widget.CardView>

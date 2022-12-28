@@ -11,12 +11,14 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.ViewModelProvider
 import binar.finalproject.binair.admin.data.Constant.dataUser
 import binar.finalproject.binair.admin.data.model.TicketData
@@ -29,6 +31,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.min
+
 @Suppress("UNCHECKED_CAST", "RedundantSemicolon", "UNUSED_ANONYMOUS_PARAMETER",
     "RedundantSemicolon", "RedundantSemicolon"
 )
@@ -106,8 +110,21 @@ class HomeFragment : Fragment() {
     private fun initData(){
         val now = Calendar.getInstance().time
         val formatedDate = formatDate(now)
+        val hour = calendar.get(Calendar.HOUR_OF_DAY)
+        val minute = calendar.get(Calendar.MINUTE)
+        var mnt = ""
+        if(minute.toString() == "0"){
+            mnt = "00"
+        } else if(minute.toString() in "1".."9"){
+            mnt = "0$minute"
+        } else{
+            mnt = minute.toString()
+        }
+        val time = "$hour:$mnt"
         binding.etTglBerangkatInput.setText(formatedDate)
         binding.etTglSelesaiInput.setText(formatedDate)
+        binding.etJamBerangkatInput.setText(time)
+        binding.etJamKedatanganInput.setText(time)
     }
 
     @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
@@ -156,7 +173,15 @@ class HomeFragment : Fragment() {
 
     private fun showTimePickerDialog(kategori: String){
         val timePicker = TimePickerDialog(requireContext(), { view, hourOfDay, minute ->
-            val time = hourOfDay.toString() + ":" + if(minute.toString() == "0") "00" else(minute.toString())
+            var mnt = ""
+            if(minute.toString() == "0"){
+                mnt = "00"
+            } else if(minute.toString() in "1".."9"){
+                mnt = "0$minute"
+            } else{
+                mnt = minute.toString()
+            }
+            val time = "$hourOfDay:$mnt"
             updateTime(kategori, time)
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true)
         timePicker.show()

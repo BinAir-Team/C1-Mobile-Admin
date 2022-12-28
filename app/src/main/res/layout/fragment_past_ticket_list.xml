@@ -31,7 +31,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvOngoing"
+                    android:id="@+id/cvPast"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/label_on_going"
+                        android:text="@string/label_sekali_jalan"
                         android:textColor="@color/content_grey"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/label_past"
+                        android:text="@string/label_pulang_pergi"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>
@@ -73,7 +73,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvTripContainer">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvListTicket"
@@ -92,14 +93,16 @@
                 android:visibility="gone" />
         </RelativeLayout>
 
-        <com.airbnb.lottie.LottieAnimationView
+        <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/progressBar"
-            app:lottie_rawRes="@raw/ticket_loading"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
+            style="@style/SpinKitView.Large.FoldingCube"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/main_blue"
+            android:visibility="gone"
+            android:layout_marginTop="200dp"
+            />
     </LinearLayout>
 
 </FrameLayout>

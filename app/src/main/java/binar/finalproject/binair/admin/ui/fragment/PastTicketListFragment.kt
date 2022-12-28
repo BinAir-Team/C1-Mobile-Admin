@@ -63,7 +63,7 @@ class PastTicketListFragment : Fragment() {
     }
     private fun setListener(){
         binding.apply {
-            cvOngoing.setOnClickListener(){
+            cvPast.setOnClickListener(){
                 findNavController().navigate(R.id.action_pastTicketListFragment_to_ticketListFragment)
             }
         }
