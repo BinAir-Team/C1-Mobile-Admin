@@ -38,13 +38,13 @@
                     android:src="@drawable/logo_blue" />
 
                 <TextView
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="18dp"
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_toRightOf="@id/logoMaskapai"
+                    android:layout_toEndOf="@id/logoMaskapai"
                     android:fontFamily="@font/inter_medium"
                     android:text='@{transaction.date, default = "11 Jun 2023"}'
                     android:textColor="#191919"
