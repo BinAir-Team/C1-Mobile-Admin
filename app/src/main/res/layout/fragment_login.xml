@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_blue"
-    tools:context=".ui.fragment.LoginFragment">
+    tools:context=".ui.fragment.LoginFragment"
+    tools:ignore="Overdraw">
 
     <TextView
         android:id="@+id/tvWelcomeBack"
@@ -13,14 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:drawableRight="@drawable/login_plane"
         android:text="@string/selamat_datang_login"
         android:textColor="@color/white"
         android:textSize="28sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:drawableRightCompat="@drawable/login_plane" />
 
     <TextView
-        android:id="@+id/tvWelcomeBackDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -97,10 +97,10 @@
                 app:boxBackgroundColor="@color/white"
                 app:boxStrokeColor="@color/orange">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/passwordInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textPassword"
+                    android:id="@+id/passwordInput"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -116,7 +116,6 @@
                 android:layout_marginEnd="24dp"/>
 
             <TextView
-                android:id="@+id/tvLupaPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/btnSignin"

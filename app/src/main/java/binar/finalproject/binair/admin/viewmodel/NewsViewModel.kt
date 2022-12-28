@@ -1,3 +1,5 @@
+@file:Suppress("RemoveExplicitTypeArguments", "unused", "unused", "unused", "unused")
+
 package binar.finalproject.binair.admin.viewmodel
 
 import androidx.lifecycle.MutableLiveData

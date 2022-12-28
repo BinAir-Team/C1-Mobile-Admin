@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="single">
         <item android:id="@+id/navBuyTicket"
-            android:title="Add Ticket"
+            android:title="@string/add_ticket"
             android:icon="@drawable/bottomnav_ticket"
-            app:showAsAction="always"/>
+            app:showAsAction="always"
+            tools:ignore="AlwaysShowAction" />
         <item android:id="@+id/navTicketlist"
-            android:title="Ticket List"
+            android:title="@string/ticket_list"
             android:icon="@drawable/bottomnav_ticketlist"
-            app:showAsAction="always"/>
+            app:showAsAction="always"
+            tools:ignore="AlwaysShowAction" />
         <item android:id="@+id/navAddNotif"
-            android:title="Add Notification"
+            android:title="@string/add_notification"
             android:icon="@drawable/bottomnav_addnotif"
-            app:showAsAction="always"/>
+            app:showAsAction="always"
+            tools:ignore="AlwaysShowAction" />
         <item android:id="@+id/navProfile"
             android:title="Profile"
             android:icon="@drawable/bottomnav_profile"
-            app:showAsAction="always"/>
+            app:showAsAction="always"
+            tools:ignore="AlwaysShowAction,HardcodedText" />
     </group>
 </menu>

@@ -10,13 +10,7 @@ class HeadlineViewPager(var headlineNewsList: ArrayList<News>): RecyclerView.Ada
 
     class ViewHolder(val binding: HeadlineNewsBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(img : Int){
-
-//            binding.tvTitleHeadline.text = title
-//            binding.tvDateHeadline.text = date
             binding.ivHeadline.setImageResource(img)
-//            binding.tvEditorHeadline.text = editor
-
-
         }
     }
 

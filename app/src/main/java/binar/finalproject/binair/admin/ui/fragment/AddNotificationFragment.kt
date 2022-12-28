@@ -1,3 +1,7 @@
+@file:Suppress("RedundantNullableReturnType", "RedundantNullableReturnType", "UnusedImport",
+    "UnusedImport", "UnusedImport", "UnusedImport"
+)
+
 package binar.finalproject.binair.admin.ui.fragment
 
 import android.os.Bundle
@@ -9,6 +13,7 @@ import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.databinding.FragmentAddNotificationBinding
 import binar.finalproject.binair.admin.databinding.FragmentHomeBinding
 
+@Suppress("RedundantNullableReturnType", "RedundantNullableReturnType")
 class AddNotificationFragment : Fragment() {
     lateinit var binding : FragmentAddNotificationBinding
 

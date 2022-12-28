@@ -34,6 +34,7 @@ class AutoCompleteAirportAdapter(context: Context, private val airportList: Arra
         return view
     }
 
+    @Suppress("UNCHECKED_CAST")
     class AirportFilter(
         private var adapter: AutoCompleteAirportAdapter,
         private var airportList: ArrayList<CityAirport?>
@@ -60,12 +61,6 @@ class AutoCompleteAirportAdapter(context: Context, private val airportList: Arra
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//            if (results != null && results.count > 0) {
-//                adapter.filteredAirport = results.values as List<CityAirport>
-//                adapter.notifyDataSetChanged()
-//            } else {
-//                adapter.notifyDataSetInvalidated()
-//            }
             adapter.filteredAirport.clear()
             adapter.filteredAirport.addAll(results?.values as ArrayList<CityAirport>)
             adapter.notifyDataSetChanged()

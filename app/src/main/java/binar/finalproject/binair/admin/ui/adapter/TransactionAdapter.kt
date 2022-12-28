@@ -5,11 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import binar.finalproject.binair.admin.data.response.DataGetAllTransaction
-import binar.finalproject.binair.admin.data.response.DataTicket
 import binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction
 import binar.finalproject.binair.admin.databinding.ItemHistoryTransactionBinding
-import binar.finalproject.binair.admin.databinding.ItemTicketBinding
 
 @RequiresApi(Build.VERSION_CODES.O)
 class TransactionAdapter (private val listTransaction : List<TransactionGetAllTransaction?>) : RecyclerView.Adapter<TransactionAdapter.ViewHolder>(){

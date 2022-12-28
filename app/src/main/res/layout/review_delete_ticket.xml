@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="360dp"
+    android:layout_width="360sp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="8dp"
-    app:contentPadding="22dp">
+    app:cardCornerRadius="16sp"
+    app:cardElevation="8sp"
+    app:contentPadding="22sp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/tvTitleAlert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/review_delete"
-            android:textSize="17dp"
+            android:textSize="17sp"
             android:gravity="center"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/MC_SoftRed" />
@@ -42,19 +41,18 @@
             android:id="@+id/btnBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Batal Menghapus"
+            android:text="@string/batal_menghapus"
             style="@style/button"
             android:backgroundTint="@color/SB_Grey"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20sp"/>
         <Button
+            android:id="@+id/btnDelete"
             android:backgroundTint="@color/MC_SoftRed"
-            android:layout_marginTop="10dp"
-            android:id="@+id/btnPayment"
+            android:layout_marginTop="10sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hapus Tiket"
-            style="@style/button"
-            android:layout_below="@id/btnBack"/>
+            android:text="@string/hapus_tiket"
+            style="@style/button" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -13,6 +13,9 @@ import javax.inject.Inject
 class TransactionRepository @Inject constructor(var apiService: APIService) {
     private val _allTransaction = MutableLiveData<DataGetAllTransaction?>()
     val allTransaction : LiveData<DataGetAllTransaction?> = _allTransaction
+    private val _deleteTransaction = MutableLiveData<DeleteTransactionResponse?>()
+    val deleteTransaction : LiveData<DeleteTransactionResponse?> = _deleteTransaction
+
 
     fun callGetAllTransaction(token : String) : LiveData<DataGetAllTransaction?> {
         apiService.getAllTransaction(token).enqueue(object : Callback<GetAllTransaction>{
@@ -39,5 +42,31 @@ class TransactionRepository @Inject constructor(var apiService: APIService) {
 
         })
         return allTransaction
+    }
+
+    fun deleteTransaction(token :String, id : String) : LiveData<DeleteTransactionResponse?>{
+        apiService.deleteTransaction(token, id).enqueue(object :Callback<DeleteTransactionResponse>{
+            override fun onResponse(
+                call: Call<DeleteTransactionResponse>,
+                response: Response<DeleteTransactionResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    if (result != null) {
+                        Log.d("RESULT", "Result : $result")
+                    }else{
+                        _allTransaction.postValue(null)
+                    }
+                }else{
+                    Log.e("Error : ", "onFailed: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<DeleteTransactionResponse>, t: Throwable) {
+                Log.e("Error : ", "onFailure: ${t.message}")
+            }
+
+        })
+        return deleteTransaction
     }
 }

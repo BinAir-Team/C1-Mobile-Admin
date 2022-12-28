@@ -4,28 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_blue"
-    tools:context=".ui.fragment.SplashScreenFragment">
+    tools:context=".ui.fragment.SplashScreenFragment"
+    tools:ignore="Overdraw">
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
         <ImageView
-            android:layout_width="327dp"
-            android:layout_height="84dp"
+            android:layout_width="327sp"
+            android:layout_height="84sp"
             android:src="@drawable/logo_white"
-            android:layout_marginTop="300dp"
+            android:layout_marginTop="300sp"
             android:id="@+id/mainlogo"
             android:layout_centerHorizontal="true"
             style="@style/PopInComponent"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Easy Way Around The World"
-            android:textSize="20dp"
+            android:text="@string/easy_way_around_the_world"
+            android:textSize="20sp"
             android:fontFamily="@font/fredoka_medium"
             android:layout_below="@id/mainlogo"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="16sp"
             android:layout_centerHorizontal="true"
             android:letterSpacing="0.09"
             android:textColor="@color/white"
@@ -33,13 +35,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Copyright © 2022 BinAir. All right reserved"
-            android:textSize="9dp"
+            android:text="@string/copyright_2022_binair_all_right_reserved"
+            android:textSize="11sp"
             android:fontFamily="@font/poppins_medium"
             android:textColor="@color/white"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="26dp"
+            android:layout_marginBottom="26sp"
             style="@style/PopInComponent"/>
     </RelativeLayout>
 

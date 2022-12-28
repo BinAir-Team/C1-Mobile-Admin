@@ -1,10 +1,11 @@
+@file:Suppress("KotlinDeprecation")
+
 package binar.finalproject.binair.admin.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.binair.admin.data.response.TravelerGetAllTransaction
-import binar.finalproject.binair.admin.databinding.ItemHistoryTransactionBinding
 import binar.finalproject.binair.admin.databinding.ItemPasanggerBinding
 
 

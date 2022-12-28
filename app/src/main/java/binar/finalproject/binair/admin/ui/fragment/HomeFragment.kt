@@ -1,3 +1,9 @@
+@file:Suppress("RedundantSemicolon", "RemoveEmptyParenthesesFromLambdaCall",
+    "RemoveEmptyParenthesesFromLambdaCall", "RemoveEmptyParenthesesFromLambdaCall",
+    "RemoveEmptyParenthesesFromLambdaCall", "RemoveEmptyParenthesesFromLambdaCall",
+    "RemoveEmptyParenthesesFromLambdaCall"
+)
+
 package binar.finalproject.binair.admin.ui.fragment
 
 import android.annotation.SuppressLint
@@ -12,8 +18,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import binar.finalproject.binair.admin.R
-import binar.finalproject.binair.admin.data.Constant.dataPassenger
 import binar.finalproject.binair.admin.data.Constant.dataUser
 import binar.finalproject.binair.admin.data.model.TicketData
 import binar.finalproject.binair.admin.data.response.CityAirport
@@ -21,14 +25,13 @@ import binar.finalproject.binair.admin.databinding.FragmentHomeBinding
 import binar.finalproject.binair.admin.ui.activity.MainActivity
 import binar.finalproject.binair.admin.ui.adapter.AutoCompleteAirportAdapter
 import binar.finalproject.binair.admin.viewmodel.TicketViewModel
-import binar.finalproject.binair.admin.viewmodel.UserViewModel
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
-import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.Boolean.TRUE
 import java.text.SimpleDateFormat
 import java.util.*
+@Suppress("UNCHECKED_CAST", "RedundantSemicolon", "UNUSED_ANONYMOUS_PARAMETER",
+    "RedundantSemicolon", "RedundantSemicolon"
+)
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
@@ -43,7 +46,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         ticketVM = ViewModelProvider(this).get(TicketViewModel::class.java)
         sharedPrefs = requireActivity().getSharedPreferences(dataUser, 0)
@@ -107,7 +110,7 @@ class HomeFragment : Fragment() {
         binding.etTglSelesaiInput.setText(formatedDate)
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     private fun setAutoCompleteData() {
         val dataTipe = arrayOf("Sekali Jalan", "Pulang Pergi")
         val adapterTipe = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, dataTipe)

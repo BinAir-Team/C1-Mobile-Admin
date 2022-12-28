@@ -5,13 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.PastTicketListFragment">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".ui.fragment.TicketListFragment">
+        android:orientation="vertical"
+        tools:context=".ui.fragment.TicketListFragment"
+        tools:ignore="UselessParent">
 
         <include
             android:id="@+id/toolbar"
@@ -32,7 +31,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cvPast"
+                    android:id="@+id/cvOngoing"
                     android:layout_width="150dp"
                     android:layout_height="40dp"
                     android:layout_alignParentStart="true"
@@ -45,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/label_sekali_jalan"
+                        android:text="@string/label_on_going"
                         android:textColor="@color/content_grey"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>
@@ -65,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="@string/label_pulang_pergi"
+                        android:text="@string/label_past"
                         android:textColor="@color/white"
                         android:textSize="12dp" />
                 </androidx.cardview.widget.CardView>
@@ -74,8 +73,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/cvTripContainer">
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvListTicket"

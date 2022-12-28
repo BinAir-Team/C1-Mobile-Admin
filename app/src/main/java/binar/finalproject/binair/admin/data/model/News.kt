@@ -1,9 +1,12 @@
+@file:Suppress("KotlinDeprecation", "KotlinDeprecation", "RemoveEmptySecondaryConstructorBody")
+
 package binar.finalproject.binair.admin.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
 
-class News(val id: Int,  val imgUrl: Int):
+@Suppress("KotlinDeprecation", "RemoveEmptySecondaryConstructorBody")
+class News(val id: Int, val imgUrl: Int):
     Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),

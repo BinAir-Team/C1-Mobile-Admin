@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="
+            ContentDescription,
+            RtlHardcoded,
+            RtlSymmetry,Deprecated,
+            ObsoleteLayoutParam,
+            UselessParent,
+            HardcodedText,
+            TooDeepLayout">
 
     <data>
         <variable
@@ -215,7 +223,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
-                                android:weightSum="2">
+                                android:weightSum="2"
+                                android:baselineAligned="false">
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:layout_marginRight="5dp"

@@ -8,8 +8,8 @@
             RtlSymmetry,
             ObsoleteLayoutParam,
             UselessParent,
-            HardcodedText"
-    >
+            HardcodedText">
+
     <data>
         <variable
             name="ticket"
@@ -33,7 +33,8 @@
                 android:src="@drawable/ic_back"
                 android:background="?android:attr/selectableItemBackground"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription" />
             <TextView
                 android:id="@+id/tvTitlePage"
                 android:scaleType="fitStart"
@@ -76,7 +77,8 @@
                             android:id="@+id/ivLogo"
                             android:layout_width="84sp"
                             android:layout_height="56sp"
-                            android:src="@drawable/logo_pesawat"/>
+                            android:src="@drawable/logo_pesawat"
+                            tools:ignore="ContentDescription" />
                         <TextView
                             android:fontFamily="@font/inter_medium"
                             android:textSize="14sp"
@@ -88,11 +90,10 @@
                             android:fontFamily="@font/inter_bold"
                             android:textFontWeight="1000"
                             android:textSize="14sp"
-                            android:layout_marginStart="8sp"
+                            android:layout_marginLeft="8sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/flight_plane_number"
-                            tools:ignore="UnusedAttribute" />
+                            android:text=" PK 625"/>
 
                     </LinearLayout>
 
@@ -175,8 +176,7 @@
                         android:layout_marginTop="16sp"
                         android:fontFamily="@font/inter_light"
                         android:text='@{ticket.type, default ="Langsung"}'
-                        android:textSize="10sp"
-                        tools:ignore="SmallSp" />
+                        android:textSize="11sp" />
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_below="@id/labelType"
@@ -270,7 +270,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/labelTanggal"
-                                    android:text= "@string/none"
+                                    android:text= "-"
                                     android:textStyle="bold"
                                     app:drawableStartCompat="@drawable/ic_baseline_timer_24" />
                             </LinearLayout>
@@ -293,6 +293,7 @@
                         </LinearLayout>
                         <TextView
                             android:fontFamily="@font/inter_bold"
+                            android:textFontWeight="1000"
                             android:layout_marginLeft="15sp"
                             android:layout_marginTop="16sp"
                             android:layout_width="wrap_content"
@@ -322,6 +323,7 @@
                                 <TextView
                                     android:layout_marginLeft="5sp"
                                     android:fontFamily="@font/inter_bold"
+                                    android:textFontWeight="1000"
                                     android:id="@+id/tvtersedia"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -347,6 +349,7 @@
                                 <TextView
                                     android:layout_marginLeft="5sp"
                                     android:fontFamily="@font/inter_bold"
+                                    android:textFontWeight="1000"
                                     android:id="@+id/tvTerisi"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -358,9 +361,10 @@
                             android:layout_marginTop="16sp"
                             android:layout_marginLeft="15sp"
                             android:layout_width="wrap_content"
-                            android:text="@string/benefits"
+                            android:text="Benefits :"
                             android:textSize="11sp"
                             android:fontFamily="@font/inter_bold"
+                            android:textFontWeight="1000"
                             android:layout_height="wrap_content"/>
 
                         <TextView

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.ProfileFragment">
+    tools:context=".ui.fragment.ProfileFragment"
+    tools:ignore="ContentDescription, UselessParent"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,6 +36,26 @@
                 android:textColor="@color/MBC_HighlightBase"
                 android:layout_marginStart="20dp"
                 android:layout_toEndOf="@id/backButton" />
+                <LinearLayout
+                    android:id="@+id/btnLogout"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageButton
+                        android:backgroundTint="#00FFFFFF"
+                        android:rotation="180"
+                        android:src="@drawable/ic_baseline_logout_24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Logout"
+                        android:fontFamily="@font/inter_bold"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+                </LinearLayout>
         </RelativeLayout>
 
         <ScrollView
@@ -57,7 +79,6 @@
                     android:paddingHorizontal="22dp">
 
                     <RelativeLayout
-                        android:id="@+id/CTAProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="23dp"
@@ -77,11 +98,10 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/Name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/poppins_medium"
-                                android:text="Admin BinAir"
+                                android:text="@string/admin_binair"
                                 android:textColor="@color/white"
                                 android:textSize="18sp" />
 
@@ -97,7 +117,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/poppins_regular"
-                                    android:text="Admin Role"
+                                    android:text="@string/admin_role"
                                     android:textColor="@color/white"
                                     android:textSize="9sp"
                                     tools:ignore="SmallSp" />
@@ -113,7 +133,6 @@
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/tvName"
                         android:layout_marginTop="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -124,7 +143,6 @@
 
                     <LinearLayout
                         android:paddingBottom="300dp"
-                        android:id="@+id/list"
                         android:paddingVertical="10dp"
                         android:paddingHorizontal="15dp"
                         android:layout_marginTop="10dp"
@@ -143,8 +161,7 @@
                             android:id="@+id/rvTransactionList"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_above="@id/pbRecView" />
+                            android:layout_marginTop="10dp" />
                         <com.github.ybq.android.spinkit.SpinKitView
                             android:id="@+id/progressBar"
                             style="@style/SpinKitView.Large.ThreeBounce"
@@ -154,7 +171,6 @@
                             android:layout_marginTop="100dp"
                             android:layout_marginBottom="100dp"
                             android:visibility="gone"
-                            android:layout_centerInParent="true"
                             app:SpinKit_Color="@color/main_blue" />
                     </LinearLayout>
                 </LinearLayout>
