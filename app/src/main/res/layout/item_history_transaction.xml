@@ -39,15 +39,14 @@
                     android:src="@drawable/logo_blue" />
 
                 <TextView
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="18dp"
                     android:id="@+id/tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="18dp"
                     android:layout_toEndOf="@id/logoMaskapai"
                     android:fontFamily="@font/inter_medium"
-                    android:text='@{transaction.date, default = "11 Jun 2023"}'
                     android:textColor="#191919"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -64,13 +63,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/id_ticket"
+                    android:text="@string/id_transaksi"
                     android:fontFamily="@font/inter_medium"
                     android:textSize="14sp" />
 
                 <TextView
                     android:gravity="center"
-                    android:text='@{transaction.ticketsId, default="ae2c3640-cb5a-4546-8220-2c6bb22e974c"}'
+                    android:text='@{transaction.id, default="ae2c3640-cb5a-4546-8220-2c6bb22e974c"}'
                     android:id="@+id/tvKodePemesanan"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -100,12 +99,12 @@
                         android:layout_height="wrap_content"
                         android:text="@string/price"/>
                     <TextView
+                        android:id="@+id/tvTotalPrice"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="15sp"
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text='@{Integer.toString(transaction.amounts), default = "Rp.15000"}'/>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

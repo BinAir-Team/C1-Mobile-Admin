@@ -8,8 +8,7 @@
             RtlSymmetry,
             ObsoleteLayoutParam,
             UselessParent,
-            HardcodedText"
-    >
+            HardcodedText">
     <data>
         <variable
             name="ticket"
@@ -270,7 +269,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@id/labelTanggal"
-                                    android:text= "@string/none"
                                     android:textStyle="bold"
                                     app:drawableStartCompat="@drawable/ic_baseline_timer_24" />
                             </LinearLayout>
@@ -400,39 +398,48 @@
                             android:textSize="25sp"
                             android:fontFamily="@font/inter_light"
                             android:layout_gravity="center"/>
-                        <LinearLayout
+                        <RelativeLayout
                             android:paddingBottom="16sp"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
                             <TextView
+                                android:id="@+id/tvAdultPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:textSize="18sp"
-                                android:text="@{`Rp. ` + Integer.toString(ticket.adultPrice)}"/>
+                                android:layout_alignParentStart="true"
+                                android:layout_marginHorizontal="32dp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:textSize="12sp"
-                                android:text=" (Adult)"/>
+                                android:text=" (Dewasa)"
+                                android:layout_below="@id/tvAdultPrice"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginHorizontal="32dp"/>
                             <TextView
+                                android:id="@+id/tvChildPrice"
                                 android:layout_marginLeft="16sp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:textSize="18sp"
-                                android:text="@{`Rp. ` + Integer.toString(ticket.adultPrice)}"/>
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginHorizontal="32dp"/>
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:textSize="12sp"
-                                android:text=" (Child)"/>
+                                android:text=" (Anak)"
+                                android:layout_below="@id/tvChildPrice"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginHorizontal="32dp"/>
 
-
-                        </LinearLayout>
+                        </RelativeLayout>
                     </LinearLayout>
 
 

@@ -129,7 +129,7 @@
                             app:boxCornerRadiusTopStart="12sp"
                             app:boxStrokeColor="@color/content_grey"
                             app:hintTextColor="@color/content_grey"
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                             <AutoCompleteTextView
                                 android:id="@+id/etTipe"

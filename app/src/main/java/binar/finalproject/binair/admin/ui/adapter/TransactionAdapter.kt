@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import binar.finalproject.binair.admin.data.formatDateFromISO
+import binar.finalproject.binair.admin.data.formatRupiah
 import binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction
 import binar.finalproject.binair.admin.databinding.ItemHistoryTransactionBinding
 
@@ -18,7 +20,8 @@ class TransactionAdapter (private val listTransaction : List<TransactionGetAllTr
     ):RecyclerView.ViewHolder(binding.root){
         fun bind(item : TransactionGetAllTransaction){
             binding.transaction = item
-
+            binding.tvDate.text = item.date?.let { formatDateFromISO(it) }
+            binding.tvTotalPrice.text = item.amounts?.let { formatRupiah(it) }
             binding.cvTransaction.setOnClickListener{
                 onClick?.invoke(item)
             }

@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import binar.finalproject.binair.admin.R
 import binar.finalproject.binair.admin.data.Constant.dataUser
+import binar.finalproject.binair.admin.data.formatRupiah
 import binar.finalproject.binair.admin.data.response.TransactionGetAllTransaction
 import binar.finalproject.binair.admin.data.response.TravelerGetAllTransaction
 import binar.finalproject.binair.admin.databinding.FragmentDetailTransactionBinding
@@ -62,21 +63,20 @@ class DetailTransactionFragment : Fragment() {
                     transactionVM.deleteTransaction(token, it1).observe(viewLifecycleOwner) {
                         if (it != null) {
                             Toast.makeText(context, "Data Berhasil Di Hapus", Toast.LENGTH_SHORT).show()
-                            BackToProfile()
+                            backToProfile()
                         }else{
                             Toast.makeText(context, "Data Tidak Berhasil Di Hapus", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             }
-
             btnBack.setOnClickListener(){
-                BackToProfile()
+                backToProfile()
             }
         }
     }
 
-    private fun BackToProfile(){
+    private fun backToProfile(){
         findNavController().navigate(R.id.action_detailTransactionFragment_to_profileFragment)
     }
 
@@ -84,24 +84,30 @@ class DetailTransactionFragment : Fragment() {
         val oldDateStart = clickedTransaction.date
         val formatedDateStart = oldDateStart?.let { formatDate(it) }
         clickedTransaction.date = formatedDateStart
-        binding.transaction = clickedTransaction
+        if(clickedTransaction.ticket?.dateEnd == null){
+            binding.apply {
+                containerDateEnd.visibility = View.GONE
+            }
+        }
 
+        binding.transaction = clickedTransaction
+        binding.tvTotalPrice.text = clickedTransaction.amounts?.let { formatRupiah(it) }
         passangerSetView(clickedTransaction.traveler as List<TravelerGetAllTransaction>)
     }
 
-    fun formatDate(date : String) : String {
-        try {
+    private fun formatDate(date : String) : String {
+        return try {
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val localDate = LocalDate.parse(date, formatter)
             val formatter2 = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale("id","ID"))
-            return localDate.format(formatter2)
+            localDate.format(formatter2)
         }catch (e : Exception){
-            return date
+            date
         }
     }
 
     private fun passangerSetView(it : List<TravelerGetAllTransaction>){
-        adapter =PassangerAdapter(it)
+        adapter = PassangerAdapter(it)
         layoutmanager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvPassenger.adapter = adapter
         binding.rvPassenger.layoutManager = layoutmanager

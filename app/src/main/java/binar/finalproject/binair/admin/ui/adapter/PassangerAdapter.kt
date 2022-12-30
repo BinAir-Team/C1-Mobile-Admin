@@ -14,6 +14,7 @@ class PassangerAdapter (private val listPassanger : List<TravelerGetAllTransacti
     class ViewHolder(private val binding : ItemPasanggerBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(item : TravelerGetAllTransaction){
             binding.traveler = item
+            binding.tvType.text = if(item.type.equals("adult")) "Dewasa" else "Anak"
         }
     }
 
@@ -23,7 +24,7 @@ class PassangerAdapter (private val listPassanger : List<TravelerGetAllTransacti
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        listPassanger[position]?.let {
+        listPassanger[position].let {
             holder.bind(it)
         }
     }

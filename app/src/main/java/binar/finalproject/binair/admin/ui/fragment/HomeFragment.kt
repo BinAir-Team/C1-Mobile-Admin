@@ -115,7 +115,7 @@ class HomeFragment : Fragment() {
         var mnt = ""
         if(minute.toString() == "0"){
             mnt = "00"
-        } else if(minute.toString() in "1".."9"){
+        } else if(minute.toString().length == 1){
             mnt = "0$minute"
         } else{
             mnt = minute.toString()
@@ -131,6 +131,7 @@ class HomeFragment : Fragment() {
     private fun setAutoCompleteData() {
         val dataTipe = arrayOf("Sekali Jalan", "Pulang Pergi")
         val adapterTipe = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, dataTipe)
+        binding.etTipe.setAdapter(adapterTipe)
         ticketVM.callGetCityAirport().observe(viewLifecycleOwner){
             if(it != null){
                 val city = it
@@ -152,19 +153,12 @@ class HomeFragment : Fragment() {
                         airportTo = data.airport
                         binding.etDestination.setText("${data.city} - ${data.code}")
                     }
-                    etTipe.threshold = 0
-                    etTipe.setAdapter(adapterTipe)
                     etTipe.setOnItemClickListener(){ adapterView, view, pos, l ->
                         if(dataTipe[pos] == "Pulang Pergi"){
                             binding.tglSelesaiInputContainer.visibility = View.VISIBLE
                         }else{
                             binding.tglSelesaiInputContainer.visibility = View.GONE
                         }
-                        binding.etTipe.setText(dataTipe[pos])
-                    }
-                    etTipe.setOnClickListener{
-                        etTipe.maxLines = 5
-                        etTipe.showDropDown()
                     }
                 }
             }
@@ -176,7 +170,7 @@ class HomeFragment : Fragment() {
             var mnt = ""
             if(minute.toString() == "0"){
                 mnt = "00"
-            } else if(minute.toString() in "1".."9"){
+            } else if(minute.toString().length == 1){
                 mnt = "0$minute"
             } else{
                 mnt = minute.toString()

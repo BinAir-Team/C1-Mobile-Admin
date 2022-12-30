@@ -20,13 +20,6 @@
             android:padding="16dp"
             android:background="@color/MC_Blue">
 
-            <ImageView
-                android:layout_marginTop="5dp"
-                android:id="@+id/backButton"
-                android:layout_width="7dp"
-                android:layout_height="12.23dp"
-                android:src="@drawable/left_arrow" />
-
             <TextView
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="14sp"
@@ -34,8 +27,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/profil"
                 android:textColor="@color/MBC_HighlightBase"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@id/backButton" />
+                android:layout_marginStart="20dp" />
                 <LinearLayout
                     android:id="@+id/btnLogout"
                     android:layout_alignParentEnd="true"

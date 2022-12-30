@@ -31,10 +31,10 @@
 
             <ImageButton
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/ic_back" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/tvTitlePage"
@@ -87,7 +87,7 @@
                             android:layout_marginLeft="8sp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Flight Number :"/>
+                            android:text="Nomor Penerbangan :"/>
                         <TextView
                             android:fontFamily="@font/inter_bold"
                             android:textSize="14sp"
@@ -121,7 +121,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_light"
                                 android:textStyle="bold"
-                                android:text="tgl pesan"
+                                android:text="Tgl Pesan"
 
                                 android:textSize="15sp"/>
                             <TextView
@@ -140,7 +140,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_light"
                                 android:textStyle="bold"
-                                android:text="Pemesan"
+                                android:text="Nama"
 
                                 android:textSize="15sp"/>
                             <TextView
@@ -291,6 +291,7 @@
                                     app:drawableStartCompat="@drawable/ic_schedule_blue" />
                             </LinearLayout>
                             <LinearLayout
+                                android:id="@+id/containerDateEnd"
                                 android:orientation="vertical"
                                 android:layout_below="@id/labelTanggal"
                                 android:layout_weight="1"
@@ -304,7 +305,6 @@
                                     android:text="@string/Label_date_end"
                                     android:textSize="16sp"
                                     android:fontFamily="@font/inter_light"
-
                                     android:layout_below="@id/labelType"/>
 
                                 <TextView
@@ -343,7 +343,8 @@
                             android:text="Detail Penumpang"
                             android:textSize="16sp"
                             android:fontFamily="@font/inter_light"
-                            android:layout_below="@id/labelTanggal"/>
+                            android:layout_below="@id/labelTanggal"
+                            android:layout_marginTop="12dp"/>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvPassenger"
@@ -402,13 +403,12 @@
                             android:fontFamily="@font/inter_light"
                             android:layout_gravity="center"/>
                         <TextView
-
+                            android:id="@+id/tvTotalPrice"
                             android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_semibold"
-                            android:textSize="18sp"
-                            android:text="@{`Rp. ` + Integer.toString(transaction.amounts)}"/>
+                            android:textSize="18sp" />
                     </LinearLayout>
 
                     <Button
