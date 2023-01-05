@@ -245,10 +245,10 @@ class EditTicketFragment : Fragment() {
             airportFrom = clickedTicket.airportFrom
             airportTo = clickedTicket.airportTo
         }
-        val tanggalBerangkat = binding.etTglBerangkatInput.text.toString()
+        val tanggalBerangkat = formatDateToAPI(binding.etTglBerangkatInput.text.toString())
         var tanggalSelesai : String? = binding.etTglSelesaiInput.text.toString()
-        val jamBerangkat = formatDateToAPI(binding.etJamBerangkatInput.text.toString())
-        val jamKedatangan = formatDateToAPI(binding.etJamKedatanganInput.text.toString())
+        val jamBerangkat = binding.etJamBerangkatInput.text.toString()
+        val jamKedatangan = binding.etJamKedatanganInput.text.toString()
         var tipe = binding.etTipe.text.toString()
         val adultPrice = binding.etAdultPrice.text.toString().toInt()
         val childPrice = binding.etChildPrice.text.toString().toInt()
@@ -259,6 +259,7 @@ class EditTicketFragment : Fragment() {
             tanggalSelesai = null
         }else{
             tipe = "roundtrip"
+            tanggalSelesai = tanggalSelesai?.let { formatDateToAPI(it) }
         }
 
         val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")

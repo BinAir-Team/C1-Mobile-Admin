@@ -53,11 +53,13 @@ class TransactionRepository @Inject constructor(var apiService: APIService) {
                 if (response.isSuccessful) {
                     val result = response.body()
                     if (result != null) {
+                        _deleteTransaction.postValue(result)
                         Log.d("RESULT", "Result : $result")
                     }else{
-                        _allTransaction.postValue(null)
+                        _deleteTransaction.postValue(null)
                     }
                 }else{
+                    _deleteTransaction.postValue(null)
                     Log.e("Error : ", "onFailed: ${response.message()}")
                 }
             }

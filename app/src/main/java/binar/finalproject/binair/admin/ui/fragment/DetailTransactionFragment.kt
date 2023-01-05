@@ -4,13 +4,17 @@ import android.annotation.SuppressLint
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,7 +62,7 @@ class DetailTransactionFragment : Fragment() {
         binding.apply {
             delete.setOnClickListener(){
                 val token ="Bearer " + sharedPrefs.getString("token","tokenisnull")
-
+                Log.d("ID_TRANS", clickedTransaction.id.toString())
                 clickedTransaction.id?.let { it1 ->
                     transactionVM.deleteTransaction(token, it1).observe(viewLifecycleOwner) {
                         if (it != null) {
@@ -77,7 +81,7 @@ class DetailTransactionFragment : Fragment() {
     }
 
     private fun backToProfile(){
-        findNavController().navigate(R.id.action_detailTransactionFragment_to_profileFragment)
+        findNavController().navigateSafe(R.id.action_detailTransactionFragment_to_profileFragment)
     }
 
     private fun setDataToView() {
@@ -111,5 +115,22 @@ class DetailTransactionFragment : Fragment() {
         layoutmanager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvPassenger.adapter = adapter
         binding.rvPassenger.layoutManager = layoutmanager
+    }
+
+    private fun NavController.navigateSafe(@IdRes resId: Int, args: Bundle? = null) {
+        val destinationId = currentDestination?.getAction(resId)?.destinationId.orEmpty()
+        currentDestination?.let { node ->
+            val currentNode = when (node) {
+                is NavGraph -> node
+                else -> node.parent
+            }
+            if (destinationId != 0) {
+                currentNode?.findNode(destinationId)?.let { navigate(resId, args) }
+            }
+        }
+    }
+
+    private fun Int?.orEmpty(default: Int = 0): Int {
+        return this ?: default
     }
 }
